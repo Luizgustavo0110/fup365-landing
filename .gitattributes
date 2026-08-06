@@ -5,6 +5,8 @@
 # Arquivos de código e configuração usam LF de forma consistente.
 *.ts text eol=lf
 *.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
 *.css text eol=lf
 *.html text eol=lf
 *.json text eol=lf
