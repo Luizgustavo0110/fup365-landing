@@ -1,0 +1,33 @@
+# Detecta automaticamente arquivos de texto e normaliza o conteúdo
+# armazenado pelo Git, evitando alterações artificiais entre sistemas.
+* text=auto
+
+# Arquivos de código e configuração usam LF de forma consistente.
+*.ts text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.svg text eol=lf
+
+# Scripts específicos do Windows mantêm o padrão CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Arquivos binários nunca devem sofrer conversão de quebra de linha.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

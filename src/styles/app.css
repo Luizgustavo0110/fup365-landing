@@ -1,0 +1,127 @@
+.container {
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-max-width));
+  margin-inline: auto;
+}
+
+.site-header {
+  position: relative;
+  z-index: var(--layer-header);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-default);
+}
+
+.site-header__inner {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.site-brand,
+.site-footer__brand {
+  flex: 0 0 auto;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.site-navigation__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+}
+
+.site-navigation__link {
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.site-navigation__link:hover {
+  color: var(--color-text-primary);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.button--primary {
+  background: var(--color-brand-accent);
+  color: var(--color-text-inverse);
+}
+
+.button--primary:hover {
+  background: var(--color-brand-accent-hover);
+}
+
+.development-section {
+  display: flex;
+  min-height: 400px;
+  align-items: center;
+  padding-block: var(--space-9);
+}
+
+.development-section--light {
+  background: var(--color-surface-soft);
+  color: var(--color-text-primary);
+}
+
+.development-section--dark {
+  background: var(--color-brand-dark);
+  color: var(--color-text-inverse);
+}
+
+.development-section__content {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.development-section__eyebrow {
+  color: var(--color-brand-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.development-section__title {
+  max-width: 760px;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.development-section__description {
+  max-width: 640px;
+  color: inherit;
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  opacity: 0.72;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-default);
+}
+
+.site-footer__inner {
+  display: flex;
+  min-height: 140px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.site-footer__description {
+  color: var(--color-text-secondary);
+}
