@@ -1,16 +1,125 @@
 :root {
-  --color-brand-dark: #142018;
-  --color-brand-accent: #769913;
-  --color-brand-accent-hover: #62800e;
+  /*
+   * ============================================================
+   * CORES — IDENTIDADE VISUAL
+   * ============================================================
+   *
+   * Valores extraídos da foundation oficial do FUP365 no Figma.
+   * Estes tokens representam a paleta da marca e não devem ser
+   * substituídos por valores hexadecimais diretamente nos
+   * componentes.
+   */
 
+  --color-brand-primary: #506021;
+  --color-brand-accent: #99cc33;
+  --color-brand-700: #627c25;
+  --color-brand-600: #75962b;
+  --color-brand-500: #88b12f;
+
+  /*
+   * ============================================================
+   * CORES — NEUTROS E SUPERFÍCIES
+   * ============================================================
+   *
+   * Os nomes descrevem a função visual de cada cor, permitindo
+   * alterar a identidade no futuro sem depender de valores
+   * espalhados pela aplicação.
+   */
+
+  --color-ink: #182119;
+  --color-background: #f7f9f3;
   --color-surface-default: #ffffff;
-  --color-surface-soft: #f4f6ef;
-  --color-text-primary: #182018;
-  --color-text-secondary: #667066;
-  --color-text-inverse: #ffffff;
-  --color-border-subtle: rgb(24 32 24 / 14%);
+  --color-surface-soft: #eef3e6;
 
-  --font-family-sans: Inter, Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --color-text-primary: #20271f;
+  --color-text-secondary: #66705e;
+  --color-text-inverse: #ffffff;
+
+  --color-border-default: #dce4d2;
+
+  /*
+   * ============================================================
+   * CORES — ESTADOS SEMÂNTICOS
+   * ============================================================
+   *
+   * Tokens de estado permanecem independentes das cores da marca,
+   * mesmo quando atualmente compartilham o mesmo valor. Assim,
+   * uma futura alteração de estado não afeta a identidade visual.
+   */
+
+  --color-success: #75962b;
+  --color-warning: #d7a52a;
+  --color-error: #b6453c;
+
+  /*
+   * ============================================================
+   * TIPOGRAFIA — FAMÍLIAS
+   * ============================================================
+   *
+   * O Figma utiliza Manrope para títulos e Inter para conteúdo,
+   * interface e textos auxiliares. As fontes serão carregadas
+   * localmente pelo bundle da aplicação.
+   */
+
+  --font-family-heading:
+    'Manrope Variable', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --font-family-body:
+    'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /*
+   * ============================================================
+   * TIPOGRAFIA — PESOS
+   * ============================================================
+   */
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /*
+   * ============================================================
+   * TIPOGRAFIA — ESCALA
+   * ============================================================
+   *
+   * Valores convertidos de px para rem mantendo equivalência
+   * visual com o Figma em uma raiz padrão de 16px.
+   */
+
+  --font-size-hero: 3.5rem;
+  --line-height-hero: 4rem;
+
+  --font-size-heading-2: 2.5rem;
+  --line-height-heading-2: 3rem;
+
+  --font-size-heading-3: 1.75rem;
+  --line-height-heading-3: 2.25rem;
+
+  --font-size-card: 1.125rem;
+  --line-height-card: 1.625rem;
+
+  --font-size-body: 1rem;
+  --line-height-body: 1.625rem;
+
+  --font-size-body-small: 0.875rem;
+  --line-height-body-small: 1.375rem;
+
+  --font-size-action: 0.875rem;
+  --line-height-action: 1.25rem;
+
+  --font-size-section: 0.75rem;
+  --line-height-section: 1rem;
+
+  /*
+   * ============================================================
+   * LAYOUT — TOKENS TÉCNICOS PROVISÓRIOS
+   * ============================================================
+   *
+   * Estes valores sustentam a arquitetura responsiva existente,
+   * mas ainda não representam medidas aprovadas no Figma.
+   * Serão revisados durante a implementação dos componentes e
+   * layouts Desktop, Tablet e Mobile.
+   */
 
   --container-max-width: 1200px;
   --container-padding: clamp(20px, 4vw, 64px);
@@ -29,6 +138,12 @@
   --radius-medium: 16px;
   --radius-large: 28px;
   --radius-pill: 999px;
+
+  /*
+   * ============================================================
+   * INTERAÇÃO E CAMADAS
+   * ============================================================
+   */
 
   --transition-fast: 160ms ease;
   --transition-default: 240ms ease;

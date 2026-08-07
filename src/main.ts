@@ -1,3 +1,6 @@
+import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
+
 import { renderApp } from './app';
 import './styles/index.css';
 

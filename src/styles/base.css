@@ -1,17 +1,33 @@
 html {
   min-width: 320px;
-  background: var(--color-surface-default);
+  background: var(--color-background);
   color: var(--color-text-primary);
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-body);
   text-rendering: optimizeLegibility;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-surface-default);
+  background: var(--color-background);
   color: var(--color-text-primary);
-  line-height: 1.5;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-family-heading);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 button,
@@ -36,8 +52,8 @@ a {
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-small);
   background: var(--color-brand-accent);
-  color: var(--color-text-inverse);
-  font-weight: 700;
+  color: var(--color-ink);
+  font-weight: var(--font-weight-semibold);
   transform: translateY(-200%);
 }
 
