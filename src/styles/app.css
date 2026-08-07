@@ -6,7 +6,7 @@
 .site-header {
   position: relative;
   z-index: var(--layer-header);
-  border-bottom: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-default);
   background: var(--color-surface-default);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .button--primary:hover {
-  background: var(--color-brand-accent-hover);
+  background: var(--color-brand-500);
 }
 
 .development-section {
@@ -78,7 +78,7 @@
 }
 
 .development-section--dark {
-  background: var(--color-brand-dark);
+  background: var(--color-ink);
   color: var(--color-text-inverse);
 }
 
@@ -110,7 +110,7 @@
 }
 
 .site-footer {
-  border-top: 1px solid var(--color-border-subtle);
+  border-top: 1px solid var(--color-border-default);
   background: var(--color-surface-default);
 }
 
