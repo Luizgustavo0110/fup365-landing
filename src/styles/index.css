@@ -3,3 +3,11 @@
 @import './base.css';
 @import './app.css';
 @import './responsive.css';
+
+/*
+ * Os estilos de componentes permanecem isolados para evitar
+ * que regras específicas contaminem a camada global da aplicação.
+ */
+@import './components/site-header.css';
+@import './components/hero-section.css';
+@import './components/hero-dashboard.css';
