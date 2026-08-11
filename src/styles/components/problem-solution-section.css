@@ -70,13 +70,15 @@
  */
 
 .problem-solution__interactive {
-  min-width: 0;
+  position: relative;
+  min-height: 145vh;
 }
 
 .problem-solution__stage {
-  position: relative;
+  position: sticky;
+  top: 24px;
   display: grid;
-  min-height: 380px;
+  min-height: 560px;
   place-items: center;
   isolation: isolate;
 }
@@ -324,6 +326,15 @@
     padding-block: var(--space-8);
   }
 
+  .problem-solution__interactive {
+    min-height: 155vh;
+  }
+
+  .problem-solution__stage {
+    top: 20px;
+    min-height: 540px;
+  }
+
   .problem-solution__title {
     max-width: 640px;
     font-size: 2rem;
@@ -392,6 +403,15 @@
     gap: var(--space-4);
   }
 
+  .problem-solution__interactive {
+    min-height: 185vh;
+  }
+
+  .problem-solution__stage {
+    top: 12px;
+    min-height: 620px;
+  }
+
   .problem-solution__eyebrow {
     font-size: 10px;
   }
@@ -401,10 +421,6 @@
     font-size: 2rem;
     line-height: 2.375rem;
     letter-spacing: -0.01em;
-  }
-
-  .problem-solution__stage {
-    min-height: 620px;
   }
 
   .problem-solution__glow {
