@@ -1,3 +1,4 @@
+import { renderClientsSection } from './components/clients/clients-section';
 import { renderHeroSection } from './components/hero/hero-section';
 import { renderSiteFooter } from './components/site-footer';
 import { renderSiteHeader } from './components/site-header';
@@ -10,11 +11,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'empresas',
-    title: 'Empresas que confiam no FUP365',
-    theme: 'light',
-  },
   {
     id: 'desafio-solucao',
     title: 'Do desafio à solução',
@@ -82,6 +78,7 @@ export const renderApp = (): string => {
 
     <main id="main-content">
       ${renderHeroSection()}
+      ${renderClientsSection()}
       ${sectionsMarkup}
     </main>
 

@@ -1,0 +1,132 @@
+/*
+ * ============================================================
+ * CLIENTES — SEÇÃO
+ * ============================================================
+ *
+ * Organiza a prova de confiança logo após o Hero e preserva
+ * proporções consistentes entre marcas de formatos diferentes.
+ */
+
+.clients-section {
+  background: var(--color-surface-default);
+}
+
+.clients-section__inner {
+  display: grid;
+  gap: 28px;
+  padding-block: 32px 40px;
+}
+
+.clients-section__title {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.clients-section__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clients-section__item {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.clients-section__logo {
+  display: block;
+  width: auto;
+  max-width: 96px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+/*
+ * ============================================================
+ * CLIENTES — AJUSTES ÓPTICOS
+ * ============================================================
+ *
+ * Compensa diferenças de proporção entre os arquivos sem
+ * distorcer ou redimensionar artificialmente as marcas.
+ */
+
+.clients-section__logo--fs {
+  width: 58px;
+}
+
+.clients-section__logo--petro-reconcavo {
+  width: 78px;
+}
+
+.clients-section__logo--pedra-agroindustrial {
+  width: 70px;
+}
+
+.clients-section__logo--bevap {
+  width: 78px;
+}
+
+.clients-section__logo--dp-world {
+  width: 64px;
+}
+
+/*
+ * ============================================================
+ * CLIENTES — TABLET
+ * ============================================================
+ */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .clients-section__inner {
+    gap: 24px;
+    padding-block: 32px;
+  }
+
+  .clients-section__list {
+    gap: 16px;
+  }
+}
+
+/*
+ * ============================================================
+ * CLIENTES — MOBILE
+ * ============================================================
+ */
+
+@media (max-width: 767px) {
+  .clients-section__inner {
+    gap: 24px;
+    padding-block: 32px;
+  }
+
+  .clients-section__title {
+    color: var(--color-text-secondary);
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    line-height: 16px;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+
+  .clients-section__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px 16px;
+  }
+
+  .clients-section__item {
+    flex: 0 0 calc((100% - 32px) / 3);
+  }
+}
