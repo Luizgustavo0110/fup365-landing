@@ -1,0 +1,277 @@
+/*
+ * ============================================================
+ * HERO — DESKTOP
+ * ============================================================
+ *
+ * Reproduz a estrutura de 1200px aprovada no Figma, mantendo
+ * conteúdo e dashboard como responsabilidades independentes.
+ */
+
+.hero-section {
+  background: var(--color-background);
+}
+
+.hero-section__inner {
+  display: grid;
+  width: min(100%, var(--container-max-width));
+  margin-inline: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+}
+
+.hero-section__content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.hero-section__eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+  text-transform: uppercase;
+}
+
+.hero-section__title {
+  width: 520px;
+  max-width: 100%;
+  color: var(--color-text-strong);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-hero);
+}
+
+.hero-section__description {
+  width: 520px;
+  max-width: 100%;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.hero-section__benefits {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-section__benefit {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.hero-section__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-section__action {
+  min-height: 44px;
+  padding: 12px 20px;
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-action);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-action);
+  white-space: nowrap;
+}
+
+.hero-section__action--primary {
+  width: 232px;
+  border-color: var(--color-brand-primary);
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.hero-section__action--primary:hover {
+  opacity: 0.9;
+}
+
+.hero-section__action--secondary {
+  width: 181px;
+  border-color: var(--color-border-default);
+  background: var(--color-surface-default);
+  color: var(--color-brand-primary);
+}
+
+.hero-section__action--secondary:hover {
+  background: var(--color-surface-soft);
+}
+
+.hero-section__integrations {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-small);
+}
+
+.hero-section__dashboard-slot {
+  min-width: 0;
+}
+
+/*
+ * ============================================================
+ * HERO — TABLET WIDE
+ * ============================================================
+ *
+ * Entre 960px e 1199px, reduz a coluna comercial e preserva
+ * espaço prioritário para o dashboard operacional.
+ */
+
+@media (min-width: 960px) and (max-width: 1199px) {
+  .hero-section__inner {
+    width: 100%;
+    grid-template-columns: 380px minmax(0, 1fr);
+    column-gap: 24px;
+    padding: 48px 32px;
+  }
+
+  .hero-section__title,
+  .hero-section__description {
+    width: 100%;
+  }
+
+  .hero-section__title {
+    font-size: var(--font-size-heading-2);
+    line-height: var(--line-height-heading-2);
+  }
+
+  .hero-section__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-section__action--primary,
+  .hero-section__action--secondary {
+    width: 100%;
+  }
+}
+
+/*
+ * ============================================================
+ * HERO — TABLET COMPACT
+ * ============================================================
+ *
+ * Até 959px, conteúdo e dashboard passam para fluxo vertical.
+ */
+
+@media (min-width: 768px) and (max-width: 959px) {
+  .hero-section__inner {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 40px;
+    padding: 48px 32px 64px;
+  }
+
+  .hero-section__content {
+    width: 100%;
+  }
+
+  .hero-section__title,
+  .hero-section__description {
+    width: 100%;
+  }
+
+  .hero-section__title {
+    font-size: var(--font-size-heading-2);
+    line-height: var(--line-height-heading-2);
+  }
+
+  .hero-section__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-section__action--primary,
+  .hero-section__action--secondary {
+    width: 100%;
+  }
+}
+
+/*
+ * ============================================================
+ * HERO — MOBILE
+ * ============================================================
+ *
+ * Mantém os 32px laterais aprovados e prioriza leitura,
+ * área de toque e empilhamento dos CTAs.
+ */
+
+@media (max-width: 767px) {
+  .hero-section__inner {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 24px;
+    padding: 40px 32px 48px;
+  }
+
+  .hero-section__content {
+    width: 100%;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .hero-section__title,
+  .hero-section__description {
+    width: 100%;
+  }
+
+  .hero-section__title {
+    font-size: var(--font-size-heading-2);
+    line-height: var(--line-height-heading-2);
+  }
+
+  .hero-section__description,
+  .hero-section__benefit {
+    line-height: 1.2;
+  }
+
+  .hero-section__benefits {
+    gap: 12px;
+  }
+
+  .hero-section__actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .hero-section__action--primary,
+  .hero-section__action--secondary {
+    width: 100%;
+  }
+
+  .hero-section__integrations {
+    width: 100%;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
