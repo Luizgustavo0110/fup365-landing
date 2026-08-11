@@ -3,44 +3,11 @@
   margin-inline: auto;
 }
 
-.site-header {
-  position: relative;
-  z-index: var(--layer-header);
-  border-bottom: 1px solid var(--color-border-default);
-  background: var(--color-surface-default);
-}
-
-.site-header__inner {
-  display: flex;
-  min-height: 80px;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
-}
-
-.site-brand,
 .site-footer__brand {
   flex: 0 0 auto;
   font-size: 1.125rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-}
-
-.site-navigation__list {
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-  list-style: none;
-}
-
-.site-navigation__link {
-  color: var(--color-text-secondary);
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.site-navigation__link:hover {
-  color: var(--color-text-primary);
 }
 
 .button {

@@ -11,4 +11,5 @@ export type SectionId =
 export interface NavigationItem {
   readonly label: string;
   readonly sectionId: SectionId;
+  readonly desktopOnly?: boolean;
 }

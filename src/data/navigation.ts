@@ -18,7 +18,13 @@ export const navigationItems = [
     sectionId: 'resultados',
   },
   {
+    label: 'Clientes',
+    sectionId: 'empresas',
+    desktopOnly: true,
+  },
+  {
     label: 'Contato',
     sectionId: 'contato',
+    desktopOnly: true,
   },
 ] as const satisfies readonly NavigationItem[];

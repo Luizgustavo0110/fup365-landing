@@ -1,0 +1,267 @@
+/*
+ * ============================================================
+ * HEADER — DESKTOP
+ * ============================================================
+ *
+ * Reproduz a estrutura aprovada no Figma dentro do container
+ * global de 1200px. A coluna central mantém a navegação
+ * centralizada entre a marca e o CTA.
+ */
+
+.site-header {
+  position: relative;
+  z-index: var(--layer-header);
+  border-bottom: 0;
+  background: var(--color-background);
+}
+
+.site-header__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  min-height: 44px;
+  align-items: center;
+  gap: 0;
+}
+
+/*
+ * A logo mantém a mesma largura ocupada pelo wordmark aprovado
+ * no Figma para preservar a geometria original do Header.
+ */
+.site-brand {
+  display: inline-flex;
+  width: 103px;
+  align-items: center;
+  justify-self: start;
+  line-height: 0;
+}
+
+.site-brand__logo {
+  display: block;
+  width: 103px;
+  height: auto;
+}
+
+/*
+ * A navegação ocupa a coluna central sem larguras fixas.
+ * O espaçamento de 24px corresponde ao Auto Layout do Figma.
+ */
+.site-navigation {
+  justify-self: center;
+}
+
+.site-navigation__list {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-navigation__item {
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+}
+
+.site-navigation__link {
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-navigation__link:hover {
+  color: var(--color-text-primary);
+}
+
+/*
+ * O CTA mantém as dimensões aprovadas no Desktop:
+ * 232x44px, padding horizontal de 20px e raio de 8px.
+ */
+.site-header__cta {
+  width: 232px;
+  min-height: 44px;
+  justify-self: end;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-action);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-action);
+  white-space: nowrap;
+}
+
+.site-header__cta:hover {
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+}
+
+/*
+ * ============================================================
+ * CONTROLES — NAVEGAÇÃO COMPACTA
+ * ============================================================
+ *
+ * Mantém menu e CTA compacto ocultos enquanto a navegação
+ * horizontal está ativa.
+ */
+
+.site-header__menu-toggle,
+.site-navigation__cta {
+  display: none;
+}
+
+.site-header__menu-toggle {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--color-border-default);
+  color: var(--color-icon-primary);
+  cursor: pointer;
+}
+
+.site-header__menu-icon {
+  display: flex;
+  width: 20px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.site-header__menu-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  transform-origin: center;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.site-header__menu-toggle[aria-expanded='true'] .site-header__menu-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header__menu-toggle[aria-expanded='true'] .site-header__menu-line:nth-child(2) {
+  opacity: 0;
+}
+
+.site-header__menu-toggle[aria-expanded='true'] .site-header__menu-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/*
+ * ============================================================
+ * HEADER — TABLET WIDE
+ * ============================================================
+ *
+ * Preserva a navegação horizontal entre 960px e 1199px,
+ * reduzindo os links secundários e aplicando o respiro lateral.
+ */
+
+@media (min-width: 960px) and (max-width: 1199px) {
+  .site-header__inner {
+    width: calc(100% - 64px);
+    padding-block: 16px;
+  }
+
+  .site-navigation__item--desktop-only {
+    display: none;
+  }
+}
+
+/*
+ * ============================================================
+ *  HEADER — TABLET COMPACT E MOBILE
+ * ============================================================
+ *
+ * Substitui a navegação horizontal pelo menu compacto até 959px.
+ */
+
+@media (max-width: 959px) {
+  .site-header__inner {
+    width: 100%;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 16px;
+  }
+
+  .site-header__menu-toggle {
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .site-header__cta {
+    display: none;
+  }
+
+  .site-navigation {
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    display: none;
+    width: 280px;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border-radius: var(--radius-medium);
+    background: var(--color-background);
+    z-index: calc(var(--layer-header) + 1);
+  }
+
+  .site-navigation.is-open {
+    display: flex;
+  }
+
+  .site-navigation__list {
+    width: 100%;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .site-navigation__item {
+    width: 100%;
+  }
+
+  .site-navigation__item--desktop-only {
+    display: none;
+  }
+
+  .site-navigation__link {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .site-navigation__cta {
+    display: inline-flex;
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: var(--radius-small);
+    background: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-action);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-action);
+    white-space: nowrap;
+  }
+}
