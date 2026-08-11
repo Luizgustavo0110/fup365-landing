@@ -404,7 +404,7 @@
   }
 
   .problem-solution__stage {
-    min-height: 708px;
+    min-height: 620px;
   }
 
   .problem-solution__glow {
@@ -426,10 +426,10 @@
   .problem-solution__card {
     width: calc(100% - 24px);
     max-width: 326px;
-    min-height: 708px;
+    min-height: 620px;
     grid-template-columns: minmax(0, 1fr);
     align-content: start;
-    gap: 32px;
+    gap: 28px;
     padding: 32px 24px;
   }
 
@@ -451,36 +451,50 @@
     min-height: 310px;
   }
 
+  .problem-solution__visual {
+    position: relative;
+    min-height: 240px;
+  }
+
   .problem-solution__visual-item {
     min-height: 32px;
     padding: 7px 10px;
     font-size: 10px;
+    transform: translate(-50%, -50%);
   }
 
   .problem-solution__visual-item--spreadsheets {
-    top: 10%;
-    left: 0;
+    top: 18%;
+    left: 18%;
+    right: auto;
+    bottom: auto;
   }
 
   .problem-solution__visual-item--emails {
-    top: 8%;
-    right: 0;
+    top: 16%;
+    left: 82%;
+    right: auto;
+    bottom: auto;
   }
 
   .problem-solution__visual-item--erp {
-    bottom: 12%;
-    left: 0;
+    top: 82%;
+    left: 18%;
+    right: auto;
+    bottom: auto;
   }
 
   .problem-solution__visual-item--suppliers {
-    right: 0;
-    bottom: 10%;
+    top: 80%;
+    left: 82%;
+    right: auto;
+    bottom: auto;
   }
 
   .problem-solution__main-symbol {
     top: 50%;
     left: 50%;
-    width: 92px;
-    height: 92px;
+    width: 82px;
+    height: 82px;
   }
 }
