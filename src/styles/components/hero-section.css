@@ -126,10 +126,6 @@
   line-height: var(--line-height-body-small);
 }
 
-.hero-section__dashboard-slot {
-  min-width: 0;
-}
-
 /*
  * ============================================================
  * HERO — TABLET WIDE

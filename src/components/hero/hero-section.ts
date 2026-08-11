@@ -1,4 +1,5 @@
 import { externalLinks } from '../../config/links';
+import { renderHeroDashboard } from './hero-dashboard';
 
 /*
  * ============================================================
@@ -80,10 +81,7 @@ export const renderHeroSection = (): string => {
           </p>
         </div>
 
-        <div
-          class="hero-section__dashboard-slot"
-          aria-hidden="true"
-        ></div>
+        ${renderHeroDashboard()}
       </div>
     </section>
   `;

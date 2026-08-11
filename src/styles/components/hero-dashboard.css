@@ -1,0 +1,302 @@
+/*
+ * ============================================================
+ * HERO DASHBOARD — DESKTOP
+ * ============================================================
+ *
+ * Reproduz o mockup operacional aprovado no Figma dentro da
+ * coluna de 576px reservada ao Dashboard.
+ */
+
+.hero-dashboard {
+  min-width: 0;
+  padding: 10px;
+}
+
+.hero-dashboard__mockup {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 20px;
+  background: var(--color-surface-default);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 10%);
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — CABEÇALHO
+ * ============================================================
+ */
+
+.hero-dashboard__header {
+  display: flex;
+  min-height: 35px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hero-dashboard__title,
+.hero-dashboard__section-title {
+  margin: 0;
+  color: var(--color-text-strong);
+}
+
+.hero-dashboard__title {
+  font-family: var(--font-family-body);
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+.hero-dashboard__period {
+  align-self: center;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — MÉTRICAS PRINCIPAIS
+ * ============================================================
+ */
+
+.hero-dashboard__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.hero-dashboard__metric {
+  display: grid;
+  min-width: 0;
+  min-height: 75px;
+  align-content: start;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 10px;
+  background: var(--color-surface-default);
+}
+
+.hero-dashboard__metric-label,
+.hero-dashboard__metric-value {
+  margin: 0;
+}
+
+.hero-dashboard__metric-label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+}
+
+.hero-dashboard__metric-value {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+}
+
+.hero-dashboard__metric--danger .hero-dashboard__metric-value {
+  color: var(--color-error);
+}
+
+.hero-dashboard__metric--success .hero-dashboard__metric-value {
+  color: var(--color-success);
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — CONTEÚDO PRINCIPAL
+ * ============================================================
+ */
+
+.hero-dashboard__main {
+  display: grid;
+  min-height: 258px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  padding: 10px;
+}
+
+.hero-dashboard__status,
+.hero-dashboard__occurrences {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.hero-dashboard__section-title {
+  font-family: var(--font-family-heading);
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — STATUS
+ * ============================================================
+ */
+
+.hero-dashboard__status-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero-dashboard__chart {
+  width: 110px;
+  height: 110px;
+  flex: 0 0 110px;
+  overflow: visible;
+}
+
+.hero-dashboard__chart-track,
+.hero-dashboard__chart-segment {
+  fill: none;
+  stroke-width: 18;
+}
+
+.hero-dashboard__chart-track {
+  stroke: var(--color-border-default);
+}
+
+.hero-dashboard__chart-segment--success {
+  stroke: var(--color-success);
+}
+
+.hero-dashboard__chart-segment--warning {
+  stroke: var(--color-warning);
+}
+
+.hero-dashboard__chart-segment--danger {
+  stroke: var(--color-error);
+}
+
+.hero-dashboard__chart-segment--neutral {
+  stroke: var(--color-text-secondary);
+}
+
+.hero-dashboard__status-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-dashboard__status-item {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-heading);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — OCORRÊNCIAS
+ * ============================================================
+ */
+
+.hero-dashboard__occurrence-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-dashboard__occurrence {
+  display: grid;
+  min-height: 48px;
+  grid-template-columns: 10px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--color-surface-soft);
+}
+
+.hero-dashboard__occurrence-indicator {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hero-dashboard__occurrence-indicator--danger {
+  background: var(--color-error);
+}
+
+.hero-dashboard__occurrence-indicator--warning {
+  background: var(--color-warning);
+}
+
+.hero-dashboard__occurrence-indicator--success {
+  background: var(--color-success);
+}
+
+.hero-dashboard__occurrence-label {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-heading);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+}
+
+/*
+ * ============================================================
+ * DASHBOARD — MÉTRICAS INFERIORES
+ * ============================================================
+ */
+
+.hero-dashboard__footer-metrics {
+  display: grid;
+  min-height: 95px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 16px 24px;
+}
+
+.hero-dashboard__footer-metric {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 6px;
+}
+
+.hero-dashboard__footer-label,
+.hero-dashboard__footer-value {
+  margin: 0;
+  color: var(--color-text-strong);
+  text-align: center;
+}
+
+.hero-dashboard__footer-label {
+  font-family: var(--font-family-heading);
+  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+.hero-dashboard__footer-value {
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.35;
+}
