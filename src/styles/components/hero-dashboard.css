@@ -300,3 +300,54 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.35;
 }
+
+/*
+ * ============================================================
+ * HERO DASHBOARD — MOBILE
+ * ============================================================
+ *
+ * A versão mobile preserva apenas os indicadores essenciais do
+ * mockup aprovado. Status, ocorrências e métricas secundárias
+ * permanecem disponíveis nas composições de maior largura.
+ *
+ * A altura do card continua determinada pelo conteúdo, evitando
+ * reproduzir como valor rígido os 394px observados no Figma.
+ */
+
+@media (max-width: 767px) {
+  .hero-dashboard {
+    padding: 0;
+  }
+
+  .hero-dashboard__mockup {
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .hero-dashboard__header {
+    min-height: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .hero-dashboard__period {
+    align-self: flex-start;
+  }
+
+  .hero-dashboard__metrics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .hero-dashboard__metric {
+    min-height: 63px;
+    gap: 4px;
+    padding: 10px 12px;
+  }
+
+  .hero-dashboard__main,
+  .hero-dashboard__footer-metrics {
+    display: none;
+  }
+}
