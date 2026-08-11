@@ -1,5 +1,6 @@
 import { renderClientsSection } from './components/clients/clients-section';
 import { renderHeroSection } from './components/hero/hero-section';
+import { renderProblemSolutionSection } from './components/problem-solution/problem-solution-section';
 import { renderSiteFooter } from './components/site-footer';
 import { renderSiteHeader } from './components/site-header';
 import type { SectionId } from './types/navigation';
@@ -11,11 +12,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'desafio-solucao',
-    title: 'Do desafio à solução',
-    theme: 'dark',
-  },
   {
     id: 'como-funciona',
     title: 'Como funciona',
@@ -79,6 +75,7 @@ export const renderApp = (): string => {
     <main id="main-content">
       ${renderHeroSection()}
       ${renderClientsSection()}
+      ${renderProblemSolutionSection()}
       ${sectionsMarkup}
     </main>
 
