@@ -6,6 +6,17 @@ type ProblemSolutionPhase = 'challenge' | 'transition' | 'solution';
 
 type ProblemSolutionCardState = ProblemSolutionState['type'];
 
+type ProblemSolutionNarrativeMode = 'case' | 'handoff';
+
+interface ProblemSolutionNarrativeFrame {
+  readonly caseId: ProblemSolutionCaseId;
+  readonly caseIndex: number;
+  readonly mode: ProblemSolutionNarrativeMode;
+  readonly localProgress: number;
+  readonly handoffProgress: number;
+  readonly nextCaseId: ProblemSolutionCaseId | null;
+}
+
 type ProblemSolutionItemId = ProblemSolutionState['items'][number]['id'];
 
 interface Point {
@@ -49,6 +60,10 @@ const PROBLEM_SOLUTION_ITEM_IDS = [
   'erp',
   'suppliers',
 ] as const satisfies readonly ProblemSolutionItemId[];
+
+const CASE_SEGMENT_WEIGHT = 1;
+
+const HANDOFF_SEGMENT_WEIGHT = 0.16;
 
 const SOLUTION_STATE_ENTER_PROGRESS = 0.54;
 const CHALLENGE_STATE_RETURN_PROGRESS = 0.42;
@@ -108,6 +123,88 @@ const formatPixelValue = (value: number): string => {
 
 const resolveCaseId = (value: string | undefined): ProblemSolutionCaseId => {
   return problemSolutionCaseOrder.find((caseId) => caseId === value) ?? problemSolutionCaseOrder[0];
+};
+
+const resolveNarrativeFrame = (progress: number): ProblemSolutionNarrativeFrame => {
+  const caseCount = problemSolutionCaseOrder.length;
+
+  const handoffCount = Math.max(0, caseCount - 1);
+
+  const totalWeight = caseCount * CASE_SEGMENT_WEIGHT + handoffCount * HANDOFF_SEGMENT_WEIGHT;
+
+  const weightedProgress = clampProgress(progress) * totalWeight;
+
+  let cursor = 0;
+
+  for (const [caseIndex, caseId] of problemSolutionCaseOrder.entries()) {
+    const caseStart = cursor;
+    const caseEnd = caseStart + CASE_SEGMENT_WEIGHT;
+
+    if (weightedProgress <= caseEnd || caseIndex === caseCount - 1) {
+      return {
+        caseId,
+        caseIndex,
+        mode: 'case',
+        localProgress: clampProgress((weightedProgress - caseStart) / CASE_SEGMENT_WEIGHT),
+        handoffProgress: 0,
+        nextCaseId: null,
+      };
+    }
+
+    cursor = caseEnd;
+
+    const nextCaseId = problemSolutionCaseOrder[caseIndex + 1];
+
+    const handoffStart = cursor;
+    const handoffEnd = handoffStart + HANDOFF_SEGMENT_WEIGHT;
+
+    if (weightedProgress <= handoffEnd) {
+      return {
+        caseId,
+        caseIndex,
+        mode: 'handoff',
+        localProgress: 1,
+        handoffProgress: clampProgress((weightedProgress - handoffStart) / HANDOFF_SEGMENT_WEIGHT),
+        nextCaseId,
+      };
+    }
+
+    cursor = handoffEnd;
+  }
+
+  const lastCaseIndex = problemSolutionCaseOrder.length - 1;
+
+  const lastCaseId = problemSolutionCaseOrder[lastCaseIndex];
+
+  return {
+    caseId: lastCaseId,
+    caseIndex: lastCaseIndex,
+    mode: 'case',
+    localProgress: 1,
+    handoffProgress: 0,
+    nextCaseId: null,
+  };
+};
+
+const applyNarrativeDebugState = (
+  section: HTMLElement,
+  frame: ProblemSolutionNarrativeFrame,
+): void => {
+  section.dataset.problemSolutionNarrativeCase = frame.caseId;
+
+  section.dataset.problemSolutionNarrativeCaseIndex = String(frame.caseIndex);
+
+  section.dataset.problemSolutionNarrativeMode = frame.mode;
+
+  section.dataset.problemSolutionNarrativeLocalProgress = frame.localProgress.toFixed(4);
+
+  section.dataset.problemSolutionNarrativeHandoffProgress = frame.handoffProgress.toFixed(4);
+
+  if (frame.nextCaseId) {
+    section.dataset.problemSolutionNarrativeNextCase = frame.nextCaseId;
+  } else {
+    section.removeAttribute('data-problem-solution-narrative-next-case');
+  }
 };
 
 /*
@@ -804,6 +901,10 @@ export const initProblemSolution = (): void => {
       displayedProgress = targetProgress;
     }
 
+    const narrativeFrame = resolveNarrativeFrame(displayedProgress);
+
+    applyNarrativeDebugState(section, narrativeFrame);
+
     applyProgress(section, displayedProgress);
 
     applyCardState(displayedProgress);
@@ -872,6 +973,10 @@ export const initProblemSolution = (): void => {
       connectorsSvg,
       resolvedVisualReferences,
     );
+
+    const narrativeFrame = resolveNarrativeFrame(displayedProgress);
+
+    applyNarrativeDebugState(section, narrativeFrame);
 
     applyProgress(section, displayedProgress);
 
