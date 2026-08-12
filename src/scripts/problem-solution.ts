@@ -723,6 +723,16 @@ export const initProblemSolution = (): void => {
     resolvedVisualReferences,
   );
 
+  const refreshVisualGeometry = (): void => {
+    geometry = measureVisualGeometry(
+      visual,
+      symbol,
+      coreAnchor,
+      connectorsSvg,
+      resolvedVisualReferences,
+    );
+  };
+
   let animationFrameId: number | null = null;
 
   let previousTimestamp: number | null = null;
@@ -736,6 +746,8 @@ export const initProblemSolution = (): void => {
     problemSolutionCases[activeCaseId].states[cardState],
     resolvedVisualReferences,
   );
+
+  refreshVisualGeometry();
 
   /*
    * ------------------------------------------------------------
@@ -764,6 +776,8 @@ export const initProblemSolution = (): void => {
       problemSolutionCases[activeCaseId].states[cardState],
       resolvedVisualReferences,
     );
+
+    refreshVisualGeometry();
   };
 
   /*
