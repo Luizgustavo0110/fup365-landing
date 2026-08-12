@@ -55,6 +55,30 @@ const renderConnector = (item: (typeof problemSolutionInitialState.items)[number
 
 /*
  * ============================================================
+ * PROBLEM SOLUTION — SOLUTION ANCHORS
+ * ============================================================
+ *
+ * Os anchors representam destinos geométricos invisíveis para
+ * os elementos durante a transformação para o estado solução.
+ *
+ * O JavaScript mede suas posições reais em cada breakpoint,
+ * evitando coordenadas absolutas acopladas ao viewport.
+ */
+
+const renderSolutionAnchor = (item: (typeof problemSolutionInitialState.items)[number]): string => {
+  return `
+    <span
+      class="
+        problem-solution__solution-anchor
+        problem-solution__solution-anchor--${item.id}
+      "
+      data-problem-solution-solution-anchor="${item.id}"
+    ></span>
+  `;
+};
+
+/*
+ * ============================================================
  * PROBLEM SOLUTION — COPY STATES
  * ============================================================
  *
@@ -103,6 +127,10 @@ export const renderProblemSolutionSection = (): string => {
   const visualItemsMarkup = problemSolutionInitialState.items.map(renderVisualItem).join('');
 
   const connectorsMarkup = problemSolutionInitialState.items.map(renderConnector).join('');
+
+  const solutionAnchorsMarkup = problemSolutionInitialState.items
+    .map(renderSolutionAnchor)
+    .join('');
 
   const challengeCopyMarkup = renderCopyState(problemSolutionInitialState, false);
 
@@ -177,6 +205,18 @@ export const renderProblemSolutionSection = (): string => {
                 >
                   ${connectorsMarkup}
                 </svg>
+
+                <div
+                    class="problem-solution__solution-layout"
+                    data-problem-solution-solution-layout
+                >
+                    ${solutionAnchorsMarkup}
+
+                <span
+                    class="problem-solution__solution-core-anchor"
+                    data-problem-solution-solution-core-anchor
+                ></span>
+                </div>
 
                 ${visualItemsMarkup}
 
