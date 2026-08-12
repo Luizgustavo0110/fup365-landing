@@ -1,11 +1,11 @@
 import {
+  problemSolutionCases,
   problemSolutionInitialState,
   problemSolutionIntro,
   problemSolutionSolutionState,
 } from '../../data/problem-solution';
 
-type ProblemSolutionState =
-  typeof problemSolutionInitialState | typeof problemSolutionSolutionState;
+import type { ProblemSolutionState } from '../../data/problem-solution';
 /*
  * ============================================================
  * PROBLEM SOLUTION — VISUAL ITEMS
@@ -24,8 +24,14 @@ const renderVisualItem = (item: (typeof problemSolutionInitialState.items)[numbe
         problem-solution__visual-item--${item.id}
       "
       data-problem-solution-item="${item.id}"
+      data-problem-solution-slot="${item.slot}"
     >
-      ${item.label}
+      <span
+        class="problem-solution__visual-item-label"
+        data-problem-solution-item-label
+      >
+        ${item.label}
+      </span>
     </span>
   `;
 };
@@ -73,6 +79,7 @@ const renderSolutionAnchor = (item: (typeof problemSolutionInitialState.items)[n
         problem-solution__solution-anchor--${item.id}
       "
       data-problem-solution-solution-anchor="${item.id}"
+      data-problem-solution-slot="${item.slot}"
     ></span>
   `;
 };
@@ -102,15 +109,22 @@ const renderCopyState = (state: ProblemSolutionState, initiallyHidden: boolean):
           problem-solution__state-badge
           problem-solution__state-badge--${state.type}
         "
+        data-problem-solution-copy-badge
       >
         ${state.badge}
       </p>
 
-      <h3 class="problem-solution__state-title">
+      <h3
+        class="problem-solution__state-title"
+        data-problem-solution-copy-title
+      >
         ${state.title}
       </h3>
 
-      <p class="problem-solution__state-description">
+      <p
+        class="problem-solution__state-description"
+        data-problem-solution-copy-description
+      >
         ${state.description}
       </p>
     </div>
@@ -142,6 +156,7 @@ export const renderProblemSolutionSection = (): string => {
       class="problem-solution"
       aria-labelledby="problem-solution-title"
       data-problem-solution
+      data-problem-solution-case="${problemSolutionCases.information.id}"
     >
       <div class="container problem-solution__inner">
         <header class="problem-solution__intro">
