@@ -12,6 +12,9 @@
  */
 
 .problem-solution {
+  --problem-solution-challenge-opacity: 1;
+  --problem-solution-solution-opacity: 0;
+
   overflow: clip;
   background: var(--color-ink);
   color: var(--color-text-inverse);
@@ -153,23 +156,47 @@
 
 .problem-solution__copy {
   display: grid;
+  min-width: 0;
+}
+
+.problem-solution__copy-state {
+  grid-area: 1 / 1;
+  display: grid;
+  min-width: 0;
   align-content: center;
   justify-items: start;
   gap: var(--space-4);
-  min-width: 0;
+  will-change: opacity;
+}
+
+.problem-solution__copy-state--challenge {
+  opacity: var(--problem-solution-challenge-opacity);
+}
+
+.problem-solution__copy-state--solution {
+  opacity: var(--problem-solution-solution-opacity);
 }
 
 .problem-solution__state-badge {
   margin: 0;
   padding: 5px 10px;
-  border: 1px solid color-mix(in srgb, var(--color-error) 45%, transparent);
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--color-error) 12%, transparent);
-  color: var(--color-error);
   font-family: var(--font-family-body);
   font-size: 10px;
   font-weight: var(--font-weight-semibold);
   line-height: 1.2;
+}
+
+.problem-solution__state-badge--challenge {
+  border: 1px solid color-mix(in srgb, var(--color-error) 45%, transparent);
+  background: color-mix(in srgb, var(--color-error) 12%, transparent);
+  color: var(--color-error);
+}
+
+.problem-solution__state-badge--solution {
+  border: 1px solid color-mix(in srgb, var(--color-brand-accent) 55%, transparent);
+  background: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  color: var(--color-brand-accent);
 }
 
 .problem-solution__state-title {
@@ -194,6 +221,64 @@
 
 /*
  * ============================================================
+ * PROBLEM SOLUTION — CAMADAS DE ESTADO
+ * ============================================================
+ *
+ * Challenge e solution ocupam exatamente a mesma área.
+ *
+ * O JavaScript altera data-problem-solution-state no próprio
+ * card e o CSS decide qual conteúdo deve estar visível.
+ */
+
+.problem-solution__copy {
+  position: relative;
+}
+
+.problem-solution__copy-state {
+  grid-area: 1 / 1;
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-4);
+  transition:
+    opacity 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problem-solution__copy-state--challenge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.problem-solution__copy-state--solution {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__copy-state--challenge {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__copy-state--solution {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.problem-solution__copy-state--solution .problem-solution__state-badge {
+  border-color: color-mix(in srgb, var(--color-brand-accent) 52%, transparent);
+  background: color-mix(in srgb, var(--color-brand-accent) 12%, transparent);
+  color: var(--color-brand-accent);
+}
+
+/*
+ * ============================================================
  * PROBLEM SOLUTION — VISUAL DO DESAFIO
  * ============================================================
  */
@@ -204,8 +289,30 @@
   min-height: 264px;
 }
 
+.problem-solution__connectors {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.problem-solution__connector {
+  fill: none;
+  stroke: color-mix(in srgb, var(--color-brand-accent) 42%, transparent);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+
 .problem-solution__visual-item {
   position: absolute;
+  translate: var(--problem-solution-item-translate-x, 0px)
+    var(--problem-solution-item-translate-y, 0px);
+  will-change: translate;
   z-index: 2;
   display: inline-flex;
   min-height: 36px;
@@ -254,6 +361,10 @@
   position: absolute;
   top: 50%;
   left: 52%;
+  translate: var(--problem-solution-symbol-translate-x, 0px)
+    var(--problem-solution-symbol-translate-y, 0px);
+  will-change: translate;
+  z-index: 3;
   display: grid;
   width: 92px;
   height: 92px;
@@ -264,22 +375,147 @@
 .problem-solution__main-ring {
   position: absolute;
   inset: 0;
-  border: 1px solid color-mix(in srgb, var(--color-error) 28%, transparent);
   border-radius: 50%;
+  will-change: opacity;
+}
+
+.problem-solution__main-ring--challenge {
+  border: 1px solid color-mix(in srgb, var(--color-error) 28%, transparent);
+  opacity: var(--problem-solution-challenge-opacity);
+}
+
+.problem-solution__main-ring--solution {
+  border: 1px solid color-mix(in srgb, var(--color-brand-accent) 38%, transparent);
+  opacity: var(--problem-solution-solution-opacity);
 }
 
 .problem-solution__main-icon {
-  position: relative;
-  display: grid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
   width: 64px;
   height: 64px;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  translate: -50% -50%;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  will-change: opacity, transform;
+}
+
+.problem-solution__main-icon--challenge {
   background: var(--color-error);
   color: var(--color-text-inverse);
-  font-family: var(--font-family-heading);
   font-size: 26px;
-  font-weight: var(--font-weight-regular);
+  opacity: var(--problem-solution-challenge-opacity);
+}
+
+.problem-solution__main-icon--solution {
+  flex-direction: column;
+  gap: 1px;
+  background: var(--color-brand-accent);
+  color: var(--color-text-inverse);
+  opacity: var(--problem-solution-solution-opacity);
+}
+
+/*
+ * ============================================================
+ * PROBLEM SOLUTION — ESTADOS DO NÚCLEO
+ * ============================================================
+ */
+
+.problem-solution__main-icon--challenge,
+.problem-solution__main-icon--solution {
+  grid-area: 1 / 1;
+  transition:
+    opacity 280ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms ease;
+}
+
+.problem-solution__main-icon--challenge {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.problem-solution__main-icon--solution {
+  align-content: center;
+  gap: 1px;
+  background: var(--color-brand-accent);
+  color: var(--color-brand-primary);
+  opacity: 0;
+  transform: scale(0.72) rotate(8deg);
+}
+
+.problem-solution__main-ring--challenge,
+.problem-solution__main-ring--solution {
+  transition:
+    opacity 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease;
+}
+
+.problem-solution__main-ring--challenge {
+  opacity: 1;
+}
+
+.problem-solution__main-ring--solution {
+  border-color: color-mix(in srgb, var(--color-brand-accent) 42%, transparent);
+  opacity: 0;
+  transform: scale(0.84);
+}
+
+.problem-solution__main-check {
+  font-size: 30px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 0.9;
+}
+
+.problem-solution__main-label {
+  font-family: var(--font-family-body);
+  font-size: 9px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__main-icon--challenge {
+  opacity: 0;
+  transform: scale(0.72) rotate(-8deg);
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__main-icon--solution {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__main-ring--challenge {
+  opacity: 0;
+  transform: scale(1.14);
+}
+
+.problem-solution__card[data-problem-solution-state='solution']
+  .problem-solution__main-ring--solution {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.problem-solution__main-check {
+  font-size: 28px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 0.9;
+}
+
+.problem-solution__main-label {
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: 9px;
+  font-weight: var(--font-weight-semibold);
   line-height: 1;
 }
 
@@ -339,10 +575,6 @@
     max-width: 640px;
     font-size: 2rem;
     line-height: 2.5rem;
-  }
-
-  .problem-solution__stage {
-    min-height: 380px;
   }
 
   .problem-solution__card {
@@ -449,7 +681,8 @@
     padding: 32px 24px;
   }
 
-  .problem-solution__copy {
+  .problem-solution__copy,
+  .problem-solution__copy-state {
     align-content: start;
   }
 
@@ -461,10 +694,6 @@
 
   .problem-solution__state-description {
     max-width: none;
-  }
-
-  .problem-solution__visual {
-    min-height: 310px;
   }
 
   .problem-solution__visual {

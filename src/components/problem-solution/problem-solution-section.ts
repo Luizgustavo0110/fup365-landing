@@ -1,12 +1,19 @@
-import { problemSolutionInitialState, problemSolutionIntro } from '../../data/problem-solution';
+import {
+  problemSolutionInitialState,
+  problemSolutionIntro,
+  problemSolutionSolutionState,
+} from '../../data/problem-solution';
 
+type ProblemSolutionState =
+  typeof problemSolutionInitialState | typeof problemSolutionSolutionState;
 /*
  * ============================================================
  * PROBLEM SOLUTION — VISUAL ITEMS
  * ============================================================
  *
- * Os mesmos elementos visuais serão reaproveitados futuramente
- * durante a transição entre desafio e solução.
+ * Cada elemento existe apenas uma vez no DOM.
+ * O motor de scroll moverá esses mesmos elementos da composição
+ * de desafio para a composição organizada da solução.
  */
 
 const renderVisualItem = (item: (typeof problemSolutionInitialState.items)[number]): string => {
@@ -25,16 +32,81 @@ const renderVisualItem = (item: (typeof problemSolutionInitialState.items)[numbe
 
 /*
  * ============================================================
- * PROBLEM SOLUTION — SEÇÃO
+ * PROBLEM SOLUTION — CONNECTORS
  * ============================================================
  *
- * A estrutura abaixo permanece independente da lógica de scroll.
- * O componente apenas descreve o conteúdo e fornece pontos
- * semânticos para a camada responsável pela interação.
+ * As linhas permanecem invisíveis no estado inicial.
+ * Durante a transição serão desenhadas progressivamente entre
+ * cada item e o núcleo central do FUP365.
+ */
+
+const renderConnector = (item: (typeof problemSolutionInitialState.items)[number]): string => {
+  return `
+    <line
+      class="problem-solution__connector"
+      data-problem-solution-connector="${item.id}"
+      x1="0"
+      y1="0"
+      x2="0"
+      y2="0"
+    ></line>
+  `;
+};
+
+/*
+ * ============================================================
+ * PROBLEM SOLUTION — COPY STATES
+ * ============================================================
+ *
+ * Os dois estados permanecem na mesma célula do grid.
+ * Isso permite crossfade sem alterar a altura do card durante
+ * o scroll.
+ */
+
+const renderCopyState = (state: ProblemSolutionState, initiallyHidden: boolean): string => {
+  return `
+    <div
+      class="
+        problem-solution__copy-state
+        problem-solution__copy-state--${state.type}
+      "
+      data-problem-solution-copy="${state.type}"
+      aria-hidden="${String(initiallyHidden)}"
+    >
+      <p
+        class="
+          problem-solution__state-badge
+          problem-solution__state-badge--${state.type}
+        "
+      >
+        ${state.badge}
+      </p>
+
+      <h3 class="problem-solution__state-title">
+        ${state.title}
+      </h3>
+
+      <p class="problem-solution__state-description">
+        ${state.description}
+      </p>
+    </div>
+  `;
+};
+
+/*
+ * ============================================================
+ * PROBLEM SOLUTION — SEÇÃO
+ * ============================================================
  */
 
 export const renderProblemSolutionSection = (): string => {
   const visualItemsMarkup = problemSolutionInitialState.items.map(renderVisualItem).join('');
+
+  const connectorsMarkup = problemSolutionInitialState.items.map(renderConnector).join('');
+
+  const challengeCopyMarkup = renderCopyState(problemSolutionInitialState, false);
+
+  const solutionCopyMarkup = renderCopyState(problemSolutionSolutionState, true);
 
   return `
     <section
@@ -57,13 +129,13 @@ export const renderProblemSolutionSection = (): string => {
           </h2>
         </header>
 
-          <div
+        <div
           class="problem-solution__interactive"
           data-problem-solution-interactive
-          >
+        >
           <div
-          class="problem-solution__stage"
-          data-problem-solution-stage
+            class="problem-solution__stage"
+            data-problem-solution-stage
           >
             <span
               class="
@@ -87,26 +159,8 @@ export const renderProblemSolutionSection = (): string => {
               data-problem-solution-state="${problemSolutionInitialState.type}"
             >
               <div class="problem-solution__copy">
-                <p
-                  class="problem-solution__state-badge"
-                  data-problem-solution-badge
-                >
-                  ${problemSolutionInitialState.badge}
-                </p>
-
-                <h3
-                  class="problem-solution__state-title"
-                  data-problem-solution-state-title
-                >
-                  ${problemSolutionInitialState.title}
-                </h3>
-
-                <p
-                  class="problem-solution__state-description"
-                  data-problem-solution-state-description
-                >
-                  ${problemSolutionInitialState.description}
-                </p>
+                ${challengeCopyMarkup}
+                ${solutionCopyMarkup}
               </div>
 
               <div
@@ -114,19 +168,58 @@ export const renderProblemSolutionSection = (): string => {
                 data-problem-solution-visual
                 aria-hidden="true"
               >
+                <svg
+                  class="problem-solution__connectors"
+                  data-problem-solution-connectors
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  ${connectorsMarkup}
+                </svg>
+
                 ${visualItemsMarkup}
 
                 <div
                   class="problem-solution__main-symbol"
                   data-problem-solution-symbol
                 >
-                  <span class="problem-solution__main-ring"></span>
+                  <span
+                    class="
+                      problem-solution__main-ring
+                      problem-solution__main-ring--challenge
+                    "
+                  ></span>
 
                   <span
-                    class="problem-solution__main-icon"
-                    data-problem-solution-symbol-icon
+                    class="
+                      problem-solution__main-ring
+                      problem-solution__main-ring--solution
+                    "
+                  ></span>
+
+                  <span
+                    class="
+                      problem-solution__main-icon
+                      problem-solution__main-icon--challenge
+                    "
                   >
                     ${problemSolutionInitialState.symbol}
+                  </span>
+
+                  <span
+                    class="
+                      problem-solution__main-icon
+                      problem-solution__main-icon--solution
+                    "
+                  >
+                    <span class="problem-solution__main-check">
+                      ${problemSolutionSolutionState.symbol}
+                    </span>
+
+                    <span class="problem-solution__main-label">
+                      ${problemSolutionSolutionState.symbolLabel}
+                    </span>
                   </span>
                 </div>
               </div>
