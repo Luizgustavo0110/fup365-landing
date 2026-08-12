@@ -14,6 +14,8 @@
 .problem-solution {
   --problem-solution-challenge-opacity: 1;
   --problem-solution-solution-opacity: 0;
+  --problem-solution-narrative-content-opacity: 1;
+  --problem-solution-narrative-content-translate-y: 0px;
 
   overflow: clip;
   background: var(--color-ink);
@@ -349,6 +351,15 @@
 .problem-solution__visual-item--suppliers {
   right: 4%;
   bottom: 16%;
+}
+
+.problem-solution__copy,
+.problem-solution__visual {
+  opacity: var(--problem-solution-narrative-content-opacity, 1);
+
+  translate: 0 var(--problem-solution-narrative-content-translate-y, 0px);
+
+  will-change: opacity, translate;
 }
 
 /*

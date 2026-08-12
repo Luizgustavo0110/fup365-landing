@@ -82,6 +82,12 @@ const CONNECTOR_MINIMUM_GAP = 12;
 
 const PROGRESS_PROPERTY = '--problem-solution-progress';
 
+const LOCAL_PROGRESS_PROPERTY = '--problem-solution-local-progress';
+
+const NARRATIVE_CONTENT_OPACITY_PROPERTY = '--problem-solution-narrative-content-opacity';
+
+const NARRATIVE_CONTENT_TRANSLATE_Y_PROPERTY = '--problem-solution-narrative-content-translate-y';
+
 const ITEM_TRANSLATE_X_PROPERTY = '--problem-solution-item-translate-x';
 
 const ITEM_TRANSLATE_Y_PROPERTY = '--problem-solution-item-translate-y';
@@ -229,6 +235,14 @@ const resolveWindowedProgress = (progress: number, start: number, end: number): 
   const normalizedProgress = clampProgress((progress - start) / (end - start));
 
   return normalizedProgress * normalizedProgress * (3 - 2 * normalizedProgress);
+};
+
+const resolveHandoffContentOpacity = (handoffProgress: number): number => {
+  if (handoffProgress <= 0.5) {
+    return 1 - resolveWindowedProgress(handoffProgress, 0, 0.5);
+  }
+
+  return resolveWindowedProgress(handoffProgress, 0.5, 1);
 };
 
 /*
@@ -431,7 +445,7 @@ const calculateProgress = (interactive: HTMLElement, stage: HTMLElement): number
 const applyProgress = (section: HTMLElement, progress: number): void => {
   const phase = resolvePhase(progress);
 
-  section.style.setProperty(PROGRESS_PROPERTY, progress.toFixed(4));
+  section.style.setProperty(LOCAL_PROGRESS_PROPERTY, progress.toFixed(4));
 
   if (section.dataset.problemSolutionPhase !== phase) {
     section.dataset.problemSolutionPhase = phase;
@@ -802,7 +816,7 @@ export const initProblemSolution = (): void => {
     (reference): reference is ProblemSolutionCopyReference => reference !== null,
   );
 
-  const activeCaseId = resolveCaseId(section.dataset.problemSolutionCase);
+  let activeCaseId = resolveCaseId(section.dataset.problemSolutionCase);
 
   const copyStates = resolvedCopyReferences.map(({ root }) => root);
 
@@ -877,6 +891,69 @@ export const initProblemSolution = (): void => {
     refreshVisualGeometry();
   };
 
+  const activateCase = (caseId: ProblemSolutionCaseId): void => {
+    if (activeCaseId === caseId) {
+      return;
+    }
+
+    activeCaseId = caseId;
+
+    section.dataset.problemSolutionCase = activeCaseId;
+
+    applyCopyContent(activeCaseId, resolvedCopyReferences);
+
+    applyVisualItemContent(
+      problemSolutionCases[activeCaseId].states[cardState],
+      resolvedVisualReferences,
+    );
+
+    refreshVisualGeometry();
+  };
+
+  const applyNarrativeContentPresentation = (opacity: number, translateY: number): void => {
+    section.style.setProperty(NARRATIVE_CONTENT_OPACITY_PROPERTY, opacity.toFixed(4));
+
+    section.style.setProperty(NARRATIVE_CONTENT_TRANSLATE_Y_PROPERTY, formatPixelValue(translateY));
+  };
+
+  const applyNarrativeFrame = (frame: ProblemSolutionNarrativeFrame): void => {
+    if (frame.mode === 'case') {
+      activateCase(frame.caseId);
+
+      applyNarrativeContentPresentation(1, 0);
+
+      applyProgress(section, frame.localProgress);
+
+      applyCardState(frame.localProgress);
+
+      applyVisualGeometry(geometry, symbol, frame.localProgress);
+
+      return;
+    }
+
+    const shouldUseNextCase = frame.handoffProgress >= 0.5 && frame.nextCaseId !== null;
+
+    const visibleCaseId = shouldUseNextCase ? frame.nextCaseId : frame.caseId;
+
+    const visualProgress = shouldUseNextCase ? 0 : 1;
+
+    activateCase(visibleCaseId);
+
+    applyCardState(visualProgress);
+
+    applyProgress(section, visualProgress);
+
+    applyVisualGeometry(geometry, symbol, visualProgress);
+
+    const opacity = resolveHandoffContentOpacity(frame.handoffProgress);
+
+    const hiddenAmount = 1 - opacity;
+
+    const translateY = (frame.handoffProgress < 0.5 ? -8 : 8) * hiddenAmount;
+
+    applyNarrativeContentPresentation(opacity, translateY);
+  };
+
   /*
    * ------------------------------------------------------------
    * LOOP DE SUAVIZAÇÃO
@@ -905,11 +982,9 @@ export const initProblemSolution = (): void => {
 
     applyNarrativeDebugState(section, narrativeFrame);
 
-    applyProgress(section, displayedProgress);
+    section.style.setProperty(PROGRESS_PROPERTY, displayedProgress.toFixed(4));
 
-    applyCardState(displayedProgress);
-
-    applyVisualGeometry(geometry, symbol, displayedProgress);
+    applyNarrativeFrame(narrativeFrame);
 
     if (displayedProgress !== targetProgress) {
       animationFrameId = window.requestAnimationFrame(renderFrame);
@@ -978,11 +1053,9 @@ export const initProblemSolution = (): void => {
 
     applyNarrativeDebugState(section, narrativeFrame);
 
-    applyProgress(section, displayedProgress);
+    section.style.setProperty(PROGRESS_PROPERTY, displayedProgress.toFixed(4));
 
-    applyCardState(displayedProgress);
-
-    applyVisualGeometry(geometry, symbol, displayedProgress);
+    applyNarrativeFrame(narrativeFrame);
   };
 
   window.addEventListener('scroll', updateTargetProgress, {
