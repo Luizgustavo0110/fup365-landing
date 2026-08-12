@@ -1,8 +1,12 @@
+import { problemSolutionCaseOrder, problemSolutionCases } from '../data/problem-solution';
+
+import type { ProblemSolutionCaseId, ProblemSolutionState } from '../data/problem-solution';
+
 type ProblemSolutionPhase = 'challenge' | 'transition' | 'solution';
 
-type ProblemSolutionCardState = 'challenge' | 'solution';
+type ProblemSolutionCardState = ProblemSolutionState['type'];
 
-type ProblemSolutionItemId = 'spreadsheets' | 'emails' | 'erp' | 'suppliers';
+type ProblemSolutionItemId = ProblemSolutionState['items'][number]['id'];
 
 interface Point {
   readonly x: number;
@@ -12,8 +16,17 @@ interface Point {
 interface ProblemSolutionVisualReference {
   readonly id: ProblemSolutionItemId;
   readonly item: HTMLElement;
+  readonly label: HTMLElement;
   readonly anchor: HTMLElement;
   readonly connector: SVGLineElement;
+}
+
+interface ProblemSolutionCopyReference {
+  readonly type: ProblemSolutionCardState;
+  readonly root: HTMLElement;
+  readonly badge: HTMLElement;
+  readonly title: HTMLElement;
+  readonly description: HTMLElement;
 }
 
 interface ProblemSolutionItemGeometry extends ProblemSolutionVisualReference {
@@ -91,6 +104,10 @@ const formatCoordinate = (value: number): string => {
 
 const formatPixelValue = (value: number): string => {
   return `${formatCoordinate(value)}px`;
+};
+
+const resolveCaseId = (value: string | undefined): ProblemSolutionCaseId => {
+  return problemSolutionCaseOrder.find((caseId) => caseId === value) ?? problemSolutionCaseOrder[0];
 };
 
 /*
@@ -559,6 +576,36 @@ const applyVisualGeometry = (
  * ============================================================
  */
 
+const applyVisualItemContent = (
+  state: ProblemSolutionState,
+  references: readonly ProblemSolutionVisualReference[],
+): void => {
+  references.forEach((reference) => {
+    const itemContent = state.items.find((item) => item.id === reference.id);
+
+    if (!itemContent) {
+      return;
+    }
+
+    reference.label.textContent = itemContent.label;
+  });
+};
+
+const applyCopyContent = (
+  caseId: ProblemSolutionCaseId,
+  references: readonly ProblemSolutionCopyReference[],
+): void => {
+  const currentCase = problemSolutionCases[caseId];
+
+  references.forEach((reference) => {
+    const stateContent = currentCase.states[reference.type];
+
+    reference.badge.textContent = stateContent.badge;
+    reference.title.textContent = stateContent.title;
+    reference.description.textContent = stateContent.description;
+  });
+};
+
 export const initProblemSolution = (): void => {
   const section = document.querySelector<HTMLElement>('[data-problem-solution]');
 
@@ -595,6 +642,8 @@ export const initProblemSolution = (): void => {
   const visualReferences = PROBLEM_SOLUTION_ITEM_IDS.map((id) => {
     const item = visual.querySelector<HTMLElement>(`[data-problem-solution-item="${id}"]`);
 
+    const label = item?.querySelector<HTMLElement>('[data-problem-solution-item-label]');
+
     const anchor = visual.querySelector<HTMLElement>(
       `[data-problem-solution-solution-anchor="${id}"]`,
     );
@@ -603,13 +652,14 @@ export const initProblemSolution = (): void => {
       `[data-problem-solution-connector="${id}"]`,
     );
 
-    if (!item || !anchor || !connector) {
+    if (!item || !label || !anchor || !connector) {
       return null;
     }
 
     return {
       id,
       item,
+      label,
       anchor,
       connector,
     } satisfies ProblemSolutionVisualReference;
@@ -623,7 +673,41 @@ export const initProblemSolution = (): void => {
     (reference): reference is ProblemSolutionVisualReference => reference !== null,
   );
 
-  const copyStates = Array.from(card.querySelectorAll<HTMLElement>('[data-problem-solution-copy]'));
+  const copyReferences = (['challenge', 'solution'] as const).map((type) => {
+    const root = card.querySelector<HTMLElement>(`[data-problem-solution-copy="${type}"]`);
+
+    const badge = root?.querySelector<HTMLElement>('[data-problem-solution-copy-badge]');
+
+    const title = root?.querySelector<HTMLElement>('[data-problem-solution-copy-title]');
+
+    const description = root?.querySelector<HTMLElement>(
+      '[data-problem-solution-copy-description]',
+    );
+
+    if (!root || !badge || !title || !description) {
+      return null;
+    }
+
+    return {
+      type,
+      root,
+      badge,
+      title,
+      description,
+    } satisfies ProblemSolutionCopyReference;
+  });
+
+  if (copyReferences.some((reference) => reference === null)) {
+    return;
+  }
+
+  const resolvedCopyReferences = copyReferences.filter(
+    (reference): reference is ProblemSolutionCopyReference => reference !== null,
+  );
+
+  const activeCaseId = resolveCaseId(section.dataset.problemSolutionCase);
+
+  const copyStates = resolvedCopyReferences.map(({ root }) => root);
 
   const initialProgress = calculateProgress(interactive, stage);
 
@@ -645,6 +729,13 @@ export const initProblemSolution = (): void => {
 
   let cardState: ProblemSolutionCardState =
     card.dataset.problemSolutionState === 'solution' ? 'solution' : 'challenge';
+
+  applyCopyContent(activeCaseId, resolvedCopyReferences);
+
+  applyVisualItemContent(
+    problemSolutionCases[activeCaseId].states[cardState],
+    resolvedVisualReferences,
+  );
 
   /*
    * ------------------------------------------------------------
@@ -668,6 +759,11 @@ export const initProblemSolution = (): void => {
 
       copyState.setAttribute('aria-hidden', String(!isActive));
     });
+
+    applyVisualItemContent(
+      problemSolutionCases[activeCaseId].states[cardState],
+      resolvedVisualReferences,
+    );
   };
 
   /*
