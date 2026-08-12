@@ -249,20 +249,16 @@ export const renderProblemSolutionSection = (): string => {
 
                   <span
                     class="
-                      problem-solution__main-icon
-                      problem-solution__main-icon--solution
+                        problem-solution__main-icon
+                        problem-solution__main-icon--solution
                     "
-                  >
+                    >
                     <span class="problem-solution__main-check">
-                      ${problemSolutionSolutionState.symbol}
+                        ${problemSolutionSolutionState.symbol}
                     </span>
-
-                    <span class="problem-solution__main-label">
-                      ${problemSolutionSolutionState.symbolLabel}
                     </span>
-                  </span>
-                </div>
-              </div>
+            </div>
+            </div>
             </article>
           </div>
         </div>

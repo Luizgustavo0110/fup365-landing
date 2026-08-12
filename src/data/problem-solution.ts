@@ -52,7 +52,6 @@ export const problemSolutionStates = {
     description:
       'Pedidos, atualizações, retornos e históricos organizados em um único fluxo de acompanhamento.',
     symbol: '✓',
-    symbolLabel: 'FUP365',
     items: problemSolutionItems,
   },
 } as const;
