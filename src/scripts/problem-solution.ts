@@ -815,6 +815,11 @@ export const initProblemSolution = (): void => {
   if (!section) {
     return;
   }
+  const reducedMotionMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (reducedMotionMediaQuery.matches) {
+    return;
+  }
 
   const interactive = section.querySelector<HTMLElement>('[data-problem-solution-interactive]');
 
