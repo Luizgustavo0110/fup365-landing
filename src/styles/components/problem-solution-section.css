@@ -14,6 +14,8 @@
 .problem-solution {
   --problem-solution-challenge-opacity: 1;
   --problem-solution-solution-opacity: 0;
+  --problem-solution-ring-challenge-opacity: 1;
+  --problem-solution-ring-solution-opacity: 0;
   --problem-solution-narrative-content-opacity: 1;
   --problem-solution-narrative-content-translate-y: 0px;
 
@@ -76,7 +78,7 @@
 
 .problem-solution__interactive {
   position: relative;
-  min-height: 145vh;
+  min-height: 400vh;
 }
 
 .problem-solution__stage {
@@ -249,26 +251,22 @@
 }
 
 .problem-solution__copy-state--challenge {
-  opacity: 1;
   transform: translateY(0);
 }
 
 .problem-solution__copy-state--solution {
-  opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
 }
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__copy-state--challenge {
-  opacity: 0;
   transform: translateY(-12px);
   pointer-events: none;
 }
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__copy-state--solution {
-  opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
@@ -450,12 +448,12 @@
 
 .problem-solution__main-ring--challenge {
   border: 1px solid color-mix(in srgb, var(--color-error) 28%, transparent);
-  opacity: var(--problem-solution-challenge-opacity);
+  opacity: var(--problem-solution-ring-challenge-opacity);
 }
 
 .problem-solution__main-ring--solution {
   border: 1px solid color-mix(in srgb, var(--color-brand-accent) 38%, transparent);
-  opacity: var(--problem-solution-solution-opacity);
+  opacity: var(--problem-solution-ring-solution-opacity);
 }
 
 .problem-solution__main-icon {
@@ -506,7 +504,6 @@
 }
 
 .problem-solution__main-icon--challenge {
-  opacity: 1;
   transform: scale(1) rotate(0deg);
 }
 
@@ -515,7 +512,6 @@
   gap: 1px;
   background: var(--color-brand-accent);
   color: var(--color-brand-primary);
-  opacity: 0;
   transform: scale(0.72) rotate(8deg);
 }
 
@@ -552,25 +548,21 @@
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__main-icon--challenge {
-  opacity: 0;
   transform: scale(0.72) rotate(-8deg);
 }
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__main-icon--solution {
-  opacity: 1;
   transform: scale(1) rotate(0deg);
 }
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__main-ring--challenge {
-  opacity: 0;
   transform: scale(1.14);
 }
 
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__main-ring--solution {
-  opacity: 1;
   transform: scale(1);
 }
 
@@ -626,7 +618,7 @@
   }
 
   .problem-solution__interactive {
-    min-height: 155vh;
+    min-height: 440vh;
   }
 
   .problem-solution__stage {
@@ -699,7 +691,7 @@
   }
 
   .problem-solution__interactive {
-    min-height: 185vh;
+    min-height: 500vh;
   }
 
   .problem-solution__stage {

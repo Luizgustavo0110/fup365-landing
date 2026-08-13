@@ -68,6 +68,12 @@ const HANDOFF_SEGMENT_WEIGHT = 0.16;
 const SOLUTION_STATE_ENTER_PROGRESS = 0.54;
 const CHALLENGE_STATE_RETURN_PROGRESS = 0.42;
 
+const STATE_BLEND_START_PROGRESS = 0.34;
+const STATE_BLEND_END_PROGRESS = 0.7;
+
+const RING_BLEND_START_PROGRESS = 0.32;
+const RING_BLEND_END_PROGRESS = 0.58;
+
 const TRANSFORM_START_PROGRESS = 0.2;
 const TRANSFORM_END_PROGRESS = 0.78;
 
@@ -81,6 +87,14 @@ const CONNECTOR_PROGRESS_WINDOWS = {
 const CONNECTOR_MINIMUM_GAP = 12;
 
 const PROGRESS_PROPERTY = '--problem-solution-progress';
+
+const CHALLENGE_OPACITY_PROPERTY = '--problem-solution-challenge-opacity';
+
+const SOLUTION_OPACITY_PROPERTY = '--problem-solution-solution-opacity';
+
+const RING_CHALLENGE_OPACITY_PROPERTY = '--problem-solution-ring-challenge-opacity';
+
+const RING_SOLUTION_OPACITY_PROPERTY = '--problem-solution-ring-solution-opacity';
 
 const LOCAL_PROGRESS_PROPERTY = '--problem-solution-local-progress';
 
@@ -450,6 +464,34 @@ const applyProgress = (section: HTMLElement, progress: number): void => {
   if (section.dataset.problemSolutionPhase !== phase) {
     section.dataset.problemSolutionPhase = phase;
   }
+};
+
+const applyCardVisualBlend = (section: HTMLElement, progress: number): void => {
+  const solutionOpacity = resolveWindowedProgress(
+    progress,
+    STATE_BLEND_START_PROGRESS,
+    STATE_BLEND_END_PROGRESS,
+  );
+
+  const challengeOpacity = 1 - solutionOpacity;
+
+  section.style.setProperty(CHALLENGE_OPACITY_PROPERTY, challengeOpacity.toFixed(4));
+
+  section.style.setProperty(SOLUTION_OPACITY_PROPERTY, solutionOpacity.toFixed(4));
+};
+
+const applyRingVisualBlend = (section: HTMLElement, progress: number): void => {
+  const solutionOpacity = resolveWindowedProgress(
+    progress,
+    RING_BLEND_START_PROGRESS,
+    RING_BLEND_END_PROGRESS,
+  );
+
+  const challengeOpacity = 1 - solutionOpacity;
+
+  section.style.setProperty(RING_CHALLENGE_OPACITY_PROPERTY, challengeOpacity.toFixed(4));
+
+  section.style.setProperty(RING_SOLUTION_OPACITY_PROPERTY, solutionOpacity.toFixed(4));
 };
 
 /*
@@ -924,6 +966,10 @@ export const initProblemSolution = (): void => {
 
       applyProgress(section, frame.localProgress);
 
+      applyCardVisualBlend(section, frame.localProgress);
+
+      applyRingVisualBlend(section, frame.localProgress);
+
       applyCardState(frame.localProgress);
 
       applyVisualGeometry(geometry, symbol, frame.localProgress);
@@ -939,9 +985,13 @@ export const initProblemSolution = (): void => {
 
     activateCase(visibleCaseId);
 
-    applyCardState(visualProgress);
-
     applyProgress(section, visualProgress);
+
+    applyCardVisualBlend(section, visualProgress);
+
+    applyRingVisualBlend(section, visualProgress);
+
+    applyCardState(visualProgress);
 
     applyVisualGeometry(geometry, symbol, visualProgress);
 
