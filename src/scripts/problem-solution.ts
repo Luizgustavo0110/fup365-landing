@@ -65,7 +65,10 @@ const CASE_SEGMENT_WEIGHT = 1;
 
 const HANDOFF_SEGMENT_WEIGHT = 0.16;
 
+const FINAL_HOLD_SEGMENT_WEIGHT = 0.22;
+
 const HANDOFF_FADE_OUT_START_PROGRESS = 0.28;
+
 const HANDOFF_SWAP_PROGRESS = 0.5;
 const HANDOFF_FADE_IN_END_PROGRESS = 0.72;
 
@@ -159,7 +162,10 @@ const resolveNarrativeFrame = (progress: number): ProblemSolutionNarrativeFrame 
 
   const handoffCount = Math.max(0, caseCount - 1);
 
-  const totalWeight = caseCount * CASE_SEGMENT_WEIGHT + handoffCount * HANDOFF_SEGMENT_WEIGHT;
+  const totalWeight =
+    caseCount * CASE_SEGMENT_WEIGHT +
+    handoffCount * HANDOFF_SEGMENT_WEIGHT +
+    FINAL_HOLD_SEGMENT_WEIGHT;
 
   const weightedProgress = clampProgress(progress) * totalWeight;
 
