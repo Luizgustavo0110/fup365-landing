@@ -249,6 +249,7 @@ export const renderProblemSolutionSection = (): string => {
       <div
             class="problem-solution__interactive"
             data-problem-solution-interactive
+            aria-hidden="true"
           >
       <div
             class="problem-solution__stage"

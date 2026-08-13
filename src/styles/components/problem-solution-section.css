@@ -578,8 +578,16 @@
  */
 
 .problem-solution__reduced-motion {
-  display: none;
-  gap: 24px;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .problem-solution__reduced-motion-case {
@@ -988,6 +996,17 @@
   }
 
   .problem-solution__reduced-motion {
+    position: static;
     display: grid;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    clip-path: none;
+    white-space: normal;
+    border: 0;
+    gap: 24px;
   }
 }
