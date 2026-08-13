@@ -1,3 +1,4 @@
+import { renderHowItWorksSection } from './components/how-it-works/how-it-works-section';
 import { renderClientsSection } from './components/clients/clients-section';
 import { renderHeroSection } from './components/hero/hero-section';
 import { renderProblemSolutionSection } from './components/problem-solution/problem-solution-section';
@@ -12,11 +13,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'como-funciona',
-    title: 'Como funciona',
-    theme: 'light',
-  },
   {
     id: 'modalidades',
     title: 'Modalidades',
@@ -76,6 +72,7 @@ export const renderApp = (): string => {
       ${renderHeroSection()}
       ${renderClientsSection()}
       ${renderProblemSolutionSection()}
+      ${renderHowItWorksSection()}
       ${sectionsMarkup}
     </main>
 

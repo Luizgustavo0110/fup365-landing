@@ -1,0 +1,389 @@
+/*
+ * ============================================================
+ * HOW IT WORKS
+ * ============================================================
+ *
+ * Representa o processo operacional do FUP365 em quatro etapas.
+ *
+ * Desktop e tablet preservam a narrativa horizontal aprovada.
+ * No mobile, as mesmas etapas assumem uma composição vertical.
+ */
+
+.how-it-works {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.how-it-works__inner {
+  display: grid;
+  gap: 48px;
+  padding-block: 104px;
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — CABEÇALHO
+ * ============================================================
+ */
+
+.how-it-works__header {
+  display: grid;
+  width: min(100%, 720px);
+  justify-self: center;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.how-it-works__eyebrow {
+  margin: 0;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.how-it-works__title {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading-2);
+  letter-spacing: -0.02em;
+}
+
+.how-it-works__description {
+  width: min(100%, 640px);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — FLUXO
+ * ============================================================
+ *
+ * O gap de 56px reproduz a geometria aprovada nos dois layouts:
+ *
+ * Desktop:
+ * (1200px - 168px) / 4 ≈ 258px por etapa.
+ *
+ * Tablet Compact:
+ * (704px - 168px) / 4 ≈ 134px por etapa.
+ *
+ * Assim não precisamos manter componentes separados apenas para
+ * alterar a largura dos quatro passos.
+ */
+
+.how-it-works__flow {
+  --how-it-works-column-gap: 56px;
+  --how-it-works-track-inset: calc(12.5% - 21px);
+  --how-it-works-track-progress: 0;
+
+  position: relative;
+  padding-block: 10px;
+}
+
+.how-it-works__flow::before,
+.how-it-works__flow::after {
+  position: absolute;
+  z-index: 0;
+  top: 86px;
+  right: var(--how-it-works-track-inset);
+  left: var(--how-it-works-track-inset);
+  height: 2px;
+  content: '';
+  pointer-events: none;
+  transform-origin: left center;
+}
+
+.how-it-works__flow::before {
+  background: var(--color-border-default);
+}
+
+.how-it-works__flow::after {
+  background: var(--color-brand-accent);
+  transform: scaleX(var(--how-it-works-track-progress));
+}
+
+.how-it-works__steps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--how-it-works-column-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — ETAPA
+ * ============================================================
+ */
+
+.how-it-works__step {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: 32px 56px auto;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.how-it-works__step-number {
+  display: inline-flex;
+  min-width: 41px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25rem;
+}
+
+.how-it-works__step-marker {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  background: var(--color-surface-soft);
+}
+
+.how-it-works__step-copy {
+  display: grid;
+  min-width: 0;
+  justify-items: center;
+  gap: var(--space-4);
+}
+
+.how-it-works__step-title {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-heading);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.75rem;
+}
+
+.how-it-works__step-description {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  line-height: 1.75rem;
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — ESTADOS
+ * ============================================================
+ */
+
+.how-it-works__step[data-how-it-works-state='active'] .how-it-works__step-number {
+  color: var(--color-text-primary);
+}
+
+.how-it-works__step[data-how-it-works-state='active'] .how-it-works__step-marker {
+  border-color: var(--color-brand-primary);
+  background: var(--color-brand-primary);
+  box-shadow: 0 8px 24px rgb(80 96 33 / 16%);
+}
+
+.how-it-works__step[data-how-it-works-state='completed'] .how-it-works__step-number {
+  color: var(--color-brand-primary);
+}
+
+.how-it-works__step[data-how-it-works-state='completed'] .how-it-works__step-marker {
+  border-color: var(--color-brand-accent);
+  background: var(--color-brand-accent);
+}
+
+.how-it-works__step[data-how-it-works-state='completed'] .how-it-works__step-marker::before {
+  color: var(--color-ink);
+  content: '✓';
+  font-family: var(--font-family-body);
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.how-it-works__step[data-how-it-works-state='upcoming'] .how-it-works__step-title {
+  color: var(--color-text-secondary);
+}
+
+.how-it-works__step[data-how-it-works-state='upcoming'] .how-it-works__step-description {
+  opacity: 0.75;
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — TABLET
+ * ============================================================
+ */
+
+@media (max-width: 1199px) {
+  .how-it-works__inner {
+    gap: 48px;
+    padding-block: 56px;
+  }
+}
+
+/*
+ * ============================================================
+ * HOW IT WORKS — MOBILE
+ * ============================================================
+ */
+
+@media (max-width: 767px) {
+  .how-it-works__inner {
+    gap: var(--space-6);
+    padding-block: var(--space-8);
+  }
+
+  .how-it-works__header {
+    width: 100%;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .how-it-works__eyebrow {
+    justify-self: center;
+  }
+
+  .how-it-works__title {
+    max-width: 326px;
+    font-size: 2rem;
+    line-height: 2.375rem;
+    letter-spacing: -0.01em;
+  }
+
+  .how-it-works__description {
+    max-width: 326px;
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+
+  .how-it-works__flow {
+    padding: 0;
+  }
+
+  .how-it-works__flow::before,
+  .how-it-works__flow::after {
+    display: none;
+  }
+
+  .how-it-works__steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  /*
+   * Cada etapa se torna o próprio card.
+   *
+   * A coluna visual possui 48px e o conteúdo utiliza todo o
+   * espaço restante, reproduzindo o componente mobile aprovado.
+   */
+
+  .how-it-works__step {
+    position: relative;
+    isolation: isolate;
+    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-rows: 24px auto;
+    justify-items: start;
+    column-gap: var(--space-4);
+    row-gap: var(--space-2);
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--color-surface-soft);
+    text-align: left;
+  }
+
+  /*
+   * O connector pertence à etapa anterior e termina exatamente
+   * no centro do marcador da etapa seguinte.
+   *
+   * O pseudo-elemento pode atravessar o espaço entre os cards,
+   * evitando alturas fixas para o conteúdo textual.
+   */
+
+  .how-it-works__step:not(:last-child)::after {
+    position: absolute;
+    z-index: 0;
+    top: 76px;
+    left: 43px;
+    width: 2px;
+    height: calc(100% + var(--space-4));
+    background: var(--color-border-default);
+    content: '';
+    pointer-events: none;
+  }
+
+  .how-it-works__step[data-how-it-works-state='completed']:not(:last-child)::after {
+    background: var(--color-brand-accent);
+  }
+
+  .how-it-works__step-number,
+  .how-it-works__step-marker,
+  .how-it-works__step-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .how-it-works__step-number {
+    width: 48px;
+    min-width: 0;
+    height: 24px;
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0;
+    background: transparent;
+    font-size: 10px;
+    line-height: 14px;
+  }
+
+  .how-it-works__step-marker {
+    width: 48px;
+    height: 48px;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .how-it-works__step-copy {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-items: start;
+    gap: var(--space-2);
+  }
+
+  .how-it-works__step-title {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  .how-it-works__step-description {
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+}
