@@ -389,11 +389,11 @@ const resolveCircleEdgePoint = (center: Point, target: Point, radius: number): P
  *
  * Preserva a posição solicitada pelos anchors sempre que existe
  * espaço suficiente entre o chip e o núcleo.
- *
+ /*
  * Caso os dois elementos estejam próximos demais, o chip é
  * deslocado para fora ao longo da mesma direção, preservando
  * a composição definida pelo CSS.
- /*
+ *
  * A estratégia funciona independentemente do lado em que o
  * chip esteja posicionado em relação ao núcleo.
  */
