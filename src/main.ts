@@ -3,6 +3,7 @@ import '@fontsource-variable/manrope';
 
 import { renderApp } from './app';
 import { initSiteNavigation } from './scripts/navigation';
+import { initHowItWorks } from './scripts/how-it-works';
 import { initProblemSolution } from './scripts/problem-solution';
 
 import './styles/index.css';
@@ -17,3 +18,4 @@ applicationRoot.innerHTML = renderApp();
 
 initSiteNavigation();
 initProblemSolution();
+initHowItWorks();
