@@ -1,4 +1,5 @@
 import {
+  problemSolutionCaseOrder,
   problemSolutionCases,
   problemSolutionInitialState,
   problemSolutionIntro,
@@ -131,6 +132,77 @@ const renderCopyState = (state: ProblemSolutionState, initiallyHidden: boolean):
   `;
 };
 
+const renderReducedMotionItems = (state: ProblemSolutionState): string => {
+  return state.items
+    .map(
+      (item) => `
+        <span class="problem-solution__reduced-motion-item">
+          ${item.label}
+        </span>
+      `,
+    )
+    .join('');
+};
+
+const renderReducedMotionState = (state: ProblemSolutionState): string => {
+  return `
+    <article
+      class="
+        problem-solution__reduced-motion-state
+        problem-solution__reduced-motion-state--${state.type}
+      "
+    >
+      <p
+        class="
+          problem-solution__state-badge
+          problem-solution__state-badge--${state.type}
+        "
+      >
+        ${state.badge}
+      </p>
+
+      <h4 class="problem-solution__reduced-motion-state-title">
+        ${state.title}
+      </h4>
+
+      <p class="problem-solution__reduced-motion-state-description">
+        ${state.description}
+      </p>
+
+      <div class="problem-solution__reduced-motion-items">
+        ${renderReducedMotionItems(state)}
+      </div>
+    </article>
+  `;
+};
+
+const renderReducedMotionCase = (caseId: (typeof problemSolutionCaseOrder)[number]): string => {
+  const currentCase = problemSolutionCases[caseId];
+
+  return `
+    <section class="problem-solution__reduced-motion-case">
+      <header class="problem-solution__reduced-motion-case-header">
+        <p class="problem-solution__reduced-motion-case-index">
+          ${String(problemSolutionCaseOrder.indexOf(caseId) + 1).padStart(2, '0')}
+        </p>
+
+        <h3 class="problem-solution__reduced-motion-case-title">
+          ${currentCase.label}
+        </h3>
+      </header>
+
+      <div class="problem-solution__reduced-motion-comparison">
+        ${renderReducedMotionState(currentCase.states.challenge)}
+        ${renderReducedMotionState(currentCase.states.solution)}
+      </div>
+    </section>
+  `;
+};
+
+const renderReducedMotionCases = (): string => {
+  return problemSolutionCaseOrder.map(renderReducedMotionCase).join('');
+};
+
 /*
  * ============================================================
  * PROBLEM SOLUTION — SEÇÃO
@@ -149,6 +221,8 @@ export const renderProblemSolutionSection = (): string => {
   const challengeCopyMarkup = renderCopyState(problemSolutionInitialState, false);
 
   const solutionCopyMarkup = renderCopyState(problemSolutionSolutionState, true);
+
+  const reducedMotionCasesMarkup = renderReducedMotionCases();
 
   return `
     <section
@@ -172,11 +246,11 @@ export const renderProblemSolutionSection = (): string => {
           </h2>
         </header>
 
-        <div
-          class="problem-solution__interactive"
-          data-problem-solution-interactive
-        >
-          <div
+      <div
+            class="problem-solution__interactive"
+            data-problem-solution-interactive
+          >
+      <div
             class="problem-solution__stage"
             data-problem-solution-stage
           >
@@ -272,12 +346,16 @@ export const renderProblemSolutionSection = (): string => {
                         ${problemSolutionSolutionState.symbol}
                     </span>
                     </span>
+                </div>
+                </div>
+                </article>
             </div>
-            </div>
-            </article>
-          </div>
-        </div>
-      </div>
+           </div>
+
+           <div class="problem-solution__reduced-motion">
+                ${reducedMotionCasesMarkup}
+           </div>
+         </div>
     </section>
   `;
 };
