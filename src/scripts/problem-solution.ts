@@ -68,8 +68,11 @@ const HANDOFF_SEGMENT_WEIGHT = 0.16;
 const SOLUTION_STATE_ENTER_PROGRESS = 0.54;
 const CHALLENGE_STATE_RETURN_PROGRESS = 0.42;
 
-const STATE_BLEND_START_PROGRESS = 0.34;
-const STATE_BLEND_END_PROGRESS = 0.7;
+const CHALLENGE_FADE_START_PROGRESS = 0.34;
+const CHALLENGE_FADE_END_PROGRESS = 0.54;
+
+const SOLUTION_FADE_START_PROGRESS = 0.5;
+const SOLUTION_FADE_END_PROGRESS = 0.7;
 
 const RING_BLEND_START_PROGRESS = 0.32;
 const RING_BLEND_END_PROGRESS = 0.58;
@@ -467,13 +470,15 @@ const applyProgress = (section: HTMLElement, progress: number): void => {
 };
 
 const applyCardVisualBlend = (section: HTMLElement, progress: number): void => {
+  const challengeOpacity =
+    1 -
+    resolveWindowedProgress(progress, CHALLENGE_FADE_START_PROGRESS, CHALLENGE_FADE_END_PROGRESS);
+
   const solutionOpacity = resolveWindowedProgress(
     progress,
-    STATE_BLEND_START_PROGRESS,
-    STATE_BLEND_END_PROGRESS,
+    SOLUTION_FADE_START_PROGRESS,
+    SOLUTION_FADE_END_PROGRESS,
   );
-
-  const challengeOpacity = 1 - solutionOpacity;
 
   section.style.setProperty(CHALLENGE_OPACITY_PROPERTY, challengeOpacity.toFixed(4));
 
