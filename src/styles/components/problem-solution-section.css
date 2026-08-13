@@ -523,13 +523,8 @@
     border-color 320ms ease;
 }
 
-.problem-solution__main-ring--challenge {
-  opacity: 1;
-}
-
 .problem-solution__main-ring--solution {
   border-color: color-mix(in srgb, var(--color-brand-accent) 42%, transparent);
-  opacity: 0;
   transform: scale(0.84);
 }
 
