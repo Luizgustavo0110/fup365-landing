@@ -81,10 +81,10 @@ const TRANSFORM_START_PROGRESS = 0.2;
 const TRANSFORM_END_PROGRESS = 0.78;
 
 const CONNECTOR_PROGRESS_WINDOWS = {
-  spreadsheets: [0.46, 0.74],
-  emails: [0.49, 0.77],
-  erp: [0.52, 0.8],
-  suppliers: [0.55, 0.83],
+  spreadsheets: [0.56, 0.78],
+  emails: [0.59, 0.81],
+  erp: [0.62, 0.84],
+  suppliers: [0.65, 0.87],
 } as const satisfies Record<ProblemSolutionItemId, readonly [number, number]>;
 
 const CONNECTOR_MINIMUM_GAP = 12;
