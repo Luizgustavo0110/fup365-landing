@@ -65,6 +65,12 @@ const CASE_SEGMENT_WEIGHT = 1;
 
 const HANDOFF_SEGMENT_WEIGHT = 0.16;
 
+const HANDOFF_FADE_OUT_START_PROGRESS = 0.28;
+const HANDOFF_SWAP_PROGRESS = 0.5;
+const HANDOFF_FADE_IN_END_PROGRESS = 0.72;
+
+const HANDOFF_CONTENT_TRANSLATE_DISTANCE = 6;
+
 const SOLUTION_STATE_ENTER_PROGRESS = 0.54;
 const CHALLENGE_STATE_RETURN_PROGRESS = 0.42;
 
@@ -255,11 +261,50 @@ const resolveWindowedProgress = (progress: number, start: number, end: number): 
 };
 
 const resolveHandoffContentOpacity = (handoffProgress: number): number => {
-  if (handoffProgress <= 0.5) {
-    return 1 - resolveWindowedProgress(handoffProgress, 0, 0.5);
+  if (handoffProgress < HANDOFF_FADE_OUT_START_PROGRESS) {
+    return 1;
   }
 
-  return resolveWindowedProgress(handoffProgress, 0.5, 1);
+  if (handoffProgress <= HANDOFF_SWAP_PROGRESS) {
+    return (
+      1 -
+      resolveWindowedProgress(
+        handoffProgress,
+        HANDOFF_FADE_OUT_START_PROGRESS,
+        HANDOFF_SWAP_PROGRESS,
+      )
+    );
+  }
+
+  if (handoffProgress < HANDOFF_FADE_IN_END_PROGRESS) {
+    return resolveWindowedProgress(
+      handoffProgress,
+      HANDOFF_SWAP_PROGRESS,
+      HANDOFF_FADE_IN_END_PROGRESS,
+    );
+  }
+
+  return 1;
+};
+
+const resolveHandoffContentTranslateY = (handoffProgress: number): number => {
+  if (handoffProgress <= HANDOFF_SWAP_PROGRESS) {
+    const exitProgress = resolveWindowedProgress(
+      handoffProgress,
+      HANDOFF_FADE_OUT_START_PROGRESS,
+      HANDOFF_SWAP_PROGRESS,
+    );
+
+    return -HANDOFF_CONTENT_TRANSLATE_DISTANCE * exitProgress;
+  }
+
+  const enterProgress = resolveWindowedProgress(
+    handoffProgress,
+    HANDOFF_SWAP_PROGRESS,
+    HANDOFF_FADE_IN_END_PROGRESS,
+  );
+
+  return HANDOFF_CONTENT_TRANSLATE_DISTANCE * (1 - enterProgress);
 };
 
 /*
@@ -982,7 +1027,8 @@ export const initProblemSolution = (): void => {
       return;
     }
 
-    const shouldUseNextCase = frame.handoffProgress >= 0.5 && frame.nextCaseId !== null;
+    const shouldUseNextCase =
+      frame.handoffProgress >= HANDOFF_SWAP_PROGRESS && frame.nextCaseId !== null;
 
     const visibleCaseId = shouldUseNextCase ? frame.nextCaseId : frame.caseId;
 
@@ -1002,9 +1048,7 @@ export const initProblemSolution = (): void => {
 
     const opacity = resolveHandoffContentOpacity(frame.handoffProgress);
 
-    const hiddenAmount = 1 - opacity;
-
-    const translateY = (frame.handoffProgress < 0.5 ? -8 : 8) * hiddenAmount;
+    const translateY = resolveHandoffContentTranslateY(frame.handoffProgress);
 
     applyNarrativeContentPresentation(opacity, translateY);
   };
