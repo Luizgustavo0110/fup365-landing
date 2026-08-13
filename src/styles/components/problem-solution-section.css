@@ -70,10 +70,9 @@
  * ============================================================
  * PROBLEM SOLUTION — PALCO
  * ============================================================
- *
- * O stage estabelece o contexto para os glows e para o card.
- * Quando implementarmos o scrollytelling, esta será a região
- * responsável pela experiência sticky.
+/*
+ * O stage estabelece o contexto para os glows e para o card
+ * e permanece sticky durante a narrativa orientada por scroll.
  */
 
 .problem-solution__interactive {
@@ -98,8 +97,8 @@
  * A opacidade é aplicada separadamente da cor para reutilizar
  * os tokens oficiais da marca já existentes.
  *
- * Os valores de blur são ajustes ópticos iniciais e poderão ser
- * calibrados após a comparação lado a lado com o Figma.
+ * Blur e opacidade são mantidos sutis para criar profundidade
+ * sem competir visualmente com o conteúdo principal.
  */
 
 .problem-solution__glow {

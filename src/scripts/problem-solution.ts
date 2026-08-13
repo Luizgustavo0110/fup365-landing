@@ -123,14 +123,12 @@ const SYMBOL_TRANSLATE_X_PROPERTY = '--problem-solution-symbol-translate-x';
 const SYMBOL_TRANSLATE_Y_PROPERTY = '--problem-solution-symbol-translate-y';
 
 /*
- * Controla quanto a animação persegue a posição real do scroll.
+ * Controla a velocidade com que o progresso visual converge
+ * para a posição real do scroll.
  *
- * Neste momento mantemos 12.
- *
- * Só vamos recalibrar esse valor depois que chips, núcleo e
- * connectors estiverem participando da animação, porque a
- * percepção de velocidade mudará quando toda a composição
- * estiver em movimento.
+ * O valor 12 mantém a resposta suficientemente imediata para
+ * acompanhar o usuário sem transformar pequenas variações de
+ * scroll em movimentos secos.
  */
 
 const PROGRESS_RESPONSE = 12;
@@ -395,9 +393,9 @@ const resolveCircleEdgePoint = (center: Point, target: Point, radius: number): P
  * Caso os dois elementos estejam próximos demais, o chip é
  * deslocado para fora ao longo da mesma direção, preservando
  * a composição definida pelo CSS.
- *
- * Diferentemente da estratégia anterior, esta solução não
- * pressupõe que todos os chips estejam à esquerda do núcleo.
+ /*
+ * A estratégia funciona independentemente do lado em que o
+ * chip esteja posicionado em relação ao núcleo.
  */
 
 const resolveSafeTargetCenter = (
