@@ -1,0 +1,345 @@
+/*
+ * ============================================================
+ * SOCIAL PROOF
+ * ============================================================
+ *
+ * Combina indicadores quantitativos da operação com prova social
+ * de clientes em uma composição clara após a seção Results.
+ */
+
+.social-proof {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.social-proof__inner {
+  padding-block: 104px;
+}
+
+.social-proof__content {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 480px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — MÉTRICAS
+ * ============================================================
+ */
+
+.social-proof__metrics {
+  display: grid;
+  min-width: 0;
+  gap: 20px;
+}
+
+.social-proof__header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.social-proof__eyebrow {
+  margin: 0;
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 0.875rem;
+}
+
+.social-proof__title {
+  max-width: 560px;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.social-proof__metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.social-proof__metric {
+  display: grid;
+  min-width: 0;
+  min-height: 96px;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  background: var(--color-surface-soft);
+  text-align: center;
+}
+
+.social-proof__metric-value {
+  order: -1;
+  margin: 0;
+  color: var(--color-brand-accent);
+  font-family: var(--font-family-body);
+  font-size: 1.375rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.75rem;
+}
+
+.social-proof__metric-label {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 0.875rem;
+  text-align: center;
+}
+
+.social-proof__footnote {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — DEPOIMENTO
+ * ============================================================
+ */
+
+.social-proof__testimonial-area {
+  display: grid;
+  min-width: 0;
+}
+
+.social-proof__testimonial {
+  display: grid;
+  min-height: 240px;
+  align-content: start;
+  gap: var(--space-5);
+  margin: 0;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border-default);
+  border-radius: 20px;
+  background: var(--color-surface-default);
+}
+
+.social-proof__quote {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.social-proof__quote-mark {
+  display: block;
+  height: 20px;
+  color: var(--color-brand-accent);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.social-proof__quote-text {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+}
+
+.social-proof__author {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.social-proof__author-name {
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.social-proof__author-meta {
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: 0.625rem;
+  line-height: 1rem;
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — DESKTOP COMPACTO
+ * ============================================================
+ */
+
+@media (min-width: 960px) and (max-width: 1199px) {
+  .social-proof__inner {
+    padding-block: 88px;
+  }
+
+  .social-proof__content {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+    gap: var(--space-6);
+  }
+
+  .social-proof__metrics {
+    gap: var(--space-4);
+  }
+
+  .social-proof__metric {
+    min-height: 92px;
+    padding-inline: 6px;
+  }
+
+  .social-proof__metric-value {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+
+  .social-proof__metric-label {
+    font-size: 0.625rem;
+    line-height: 0.8125rem;
+  }
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — TABLET
+ * ============================================================
+ *
+ * Em 768–959px as métricas reproduzem a composição 3 + 2
+ * aprovada no Figma. O depoimento passa para a linha seguinte.
+ */
+
+@media (min-width: 768px) and (max-width: 959px) {
+  .social-proof__inner {
+    padding-block: 104px;
+  }
+
+  .social-proof__content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+
+  .social-proof__metrics {
+    gap: var(--space-5);
+  }
+
+  .social-proof__metrics-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  .social-proof__metric {
+    grid-column: span 2;
+    min-height: 100px;
+  }
+
+  .social-proof__metric:nth-child(4),
+  .social-proof__metric:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  .social-proof__testimonial-area {
+    width: min(100%, 560px);
+    justify-self: center;
+  }
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — MOBILE
+ * ============================================================
+ *
+ * Em mobile, a grade assume 2 + 2 + 1. A quinta métrica fica
+ * centralizada para preservar a hierarquia aprovada.
+ */
+
+@media (max-width: 767px) {
+  .social-proof__inner {
+    width: min(calc(100% - (var(--container-padding) * 2)), 326px);
+    padding-block: 104px;
+  }
+
+  .social-proof__content {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .social-proof__metrics {
+    gap: var(--space-4);
+  }
+
+  .social-proof__header {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .social-proof__eyebrow {
+    font-size: 0.5625rem;
+    line-height: 0.75rem;
+  }
+
+  .social-proof__title {
+    max-width: 256px;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+    letter-spacing: -0.015em;
+    text-align: center;
+  }
+
+  .social-proof__metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .social-proof__metric {
+    min-height: 92px;
+    padding: 12px 8px;
+  }
+
+  .social-proof__metric:last-child {
+    width: calc((100% - var(--space-2)) / 2);
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .social-proof__metric-value {
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+  }
+
+  .social-proof__metric-label {
+    font-size: 0.625rem;
+    line-height: 0.8125rem;
+  }
+
+  .social-proof__footnote {
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+    text-align: center;
+  }
+
+  .social-proof__testimonial {
+    min-height: 220px;
+    gap: var(--space-4);
+    padding: var(--space-5);
+  }
+
+  .social-proof__quote-text {
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+}

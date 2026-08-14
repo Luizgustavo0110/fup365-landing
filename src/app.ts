@@ -4,6 +4,7 @@ import { renderHowItWorksSection } from './components/how-it-works/how-it-works-
 import { renderModalitiesSection } from './components/modalities/modalities-section';
 import { renderProblemSolutionSection } from './components/problem-solution/problem-solution-section';
 import { renderResultsSection } from './components/results/results-section';
+import { renderSocialProofSection } from './components/social-proof/social-proof-section';
 import { renderSiteFooter } from './components/site-footer';
 import { renderSiteHeader } from './components/site-header';
 import type { SectionId } from './types/navigation';
@@ -15,11 +16,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'depoimentos',
-    title: 'Prova social e depoimentos',
-    theme: 'light',
-  },
   {
     id: 'contato',
     title: 'CTA final',
@@ -67,6 +63,7 @@ export const renderApp = (): string => {
       ${renderHowItWorksSection()}
       ${renderModalitiesSection()}
       ${renderResultsSection()}
+      ${renderSocialProofSection()}
       ${sectionsMarkup}
     </main>
 
