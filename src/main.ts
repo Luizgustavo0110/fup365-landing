@@ -5,6 +5,7 @@ import { renderApp } from './app';
 import { initSiteNavigation } from './scripts/navigation';
 import { initHowItWorks } from './scripts/how-it-works';
 import { initProblemSolution } from './scripts/problem-solution';
+import { initSocialProof } from './scripts/social-proof';
 
 import './styles/index.css';
 
@@ -19,3 +20,4 @@ applicationRoot.innerHTML = renderApp();
 initSiteNavigation();
 initProblemSolution();
 initHowItWorks();
+initSocialProof();

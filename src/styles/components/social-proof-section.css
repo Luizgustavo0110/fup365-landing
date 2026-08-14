@@ -92,6 +92,19 @@
   line-height: 1.75rem;
 }
 
+.social-proof__metric-value-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .social-proof__metric-label {
   margin: 0;
   color: var(--color-text-primary);
@@ -119,6 +132,12 @@
 .social-proof__testimonial-area {
   display: grid;
   min-width: 0;
+  gap: var(--space-4);
+}
+
+.social-proof__testimonial-stage {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .social-proof__testimonial {
@@ -176,6 +195,179 @@
   font-family: var(--font-family-body);
   font-size: 0.625rem;
   line-height: 1rem;
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — NAVEGAÇÃO DOS DEPOIMENTOS
+ * ============================================================
+ */
+
+.social-proof--carousel-ready .social-proof__testimonial-stage {
+  gap: 0;
+}
+
+.social-proof--carousel-ready .social-proof__testimonial {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(12px);
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 320ms;
+}
+
+.social-proof--carousel-ready .social-proof__testimonial--active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  transition:
+    opacity 260ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0s;
+}
+
+.social-proof__testimonial-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.social-proof--carousel-ready .social-proof__testimonial-controls {
+  display: flex;
+}
+
+.social-proof__testimonial-control {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border-default);
+  border-radius: 50%;
+  background: var(--color-surface-default);
+  color: var(--color-brand-primary);
+  cursor: pointer;
+  place-items: center;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.social-proof__testimonial-control svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social-proof__testimonial-control:hover {
+    border-color: var(--color-brand-accent);
+    background: var(--color-surface-soft);
+    transform: translateY(-1px);
+  }
+}
+
+.social-proof__testimonial-control:active {
+  transform: translateY(0);
+}
+
+.social-proof__testimonial-control:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+}
+
+.social-proof__testimonial-status {
+  min-width: 52px;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+  text-align: center;
+}
+
+/*
+ * ============================================================
+ * SOCIAL PROOF — ENTRADA
+ * ============================================================
+ *
+ * A animação é progressiva e funciona apenas como reforço visual.
+ * O conteúdo permanece completo e legível mesmo sem JavaScript
+ * ou quando o usuário prefere movimento reduzido.
+ */
+
+.social-proof--motion-ready .social-proof__header,
+.social-proof--motion-ready .social-proof__metric,
+.social-proof--motion-ready .social-proof__footnote,
+.social-proof--motion-ready .social-proof__testimonial-area {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.social-proof--motion-ready .social-proof__header {
+  transition:
+    opacity 480ms ease,
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-proof--motion-ready .social-proof__metric {
+  transition:
+    opacity 480ms ease,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-proof--motion-ready .social-proof__footnote {
+  transition:
+    opacity 420ms ease,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-proof--motion-ready .social-proof__testimonial-area {
+  transform: translateY(18px);
+  transition:
+    opacity 560ms ease,
+    transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__header,
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric,
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__footnote {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric:nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric:nth-child(2) {
+  transition-delay: 140ms;
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric:nth-child(4) {
+  transition-delay: 260ms;
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__metric:nth-child(5) {
+  transition-delay: 320ms;
+}
+
+.social-proof--motion-ready.social-proof--metrics-visible .social-proof__footnote {
+  transition-delay: 380ms;
+}
+
+.social-proof--motion-ready
+  .social-proof__testimonial-area.social-proof__testimonial-area--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /*
