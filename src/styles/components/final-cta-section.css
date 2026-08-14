@@ -1,0 +1,219 @@
+/*
+ * ============================================================
+ * FINAL CTA — SEÇÃO
+ * ============================================================
+ */
+
+.final-cta {
+  background: var(--color-surface-soft);
+  color: var(--color-text-inverse);
+}
+
+.final-cta__inner {
+  width: min(100%, var(--container-max-width));
+  margin-inline: auto;
+  padding-block: 104px;
+}
+
+/*
+ * ============================================================
+ * FINAL CTA — PAINEL
+ * ============================================================
+ */
+
+.final-cta__panel {
+  display: grid;
+  min-height: 480px;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-6);
+  padding-block: 72px;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 32px;
+  background: var(--color-ink);
+  text-align: center;
+}
+
+.final-cta__content {
+  display: grid;
+  width: min(100%, 760px);
+  justify-items: center;
+  gap: var(--space-4);
+}
+
+/*
+ * ============================================================
+ * FINAL CTA — CONTEÚDO
+ * ============================================================
+ */
+
+.final-cta__eyebrow {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid rgb(153 204 51 / 25%);
+  border-radius: var(--radius-pill);
+  background: rgb(153 204 51 / 12%);
+  color: var(--color-brand-accent);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.final-cta__title {
+  max-width: 760px;
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading-2);
+  letter-spacing: -0.02em;
+}
+
+.final-cta__description {
+  max-width: 680px;
+  margin: 0;
+  color: rgb(255 255 255 / 70%);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * ============================================================
+ * FINAL CTA — AÇÕES
+ * ============================================================
+ */
+
+.final-cta__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.final-cta__action {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-action);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-action);
+  text-align: center;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.final-cta__action--primary {
+  width: 240px;
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.final-cta__action--secondary {
+  width: 181px;
+  border-color: rgb(255 255 255 / 24%);
+  background: transparent;
+  color: rgb(255 255 255 / 85%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .final-cta__action:hover {
+    transform: translateY(-1px);
+  }
+
+  .final-cta__action--primary:hover {
+    background: var(--color-brand-700);
+  }
+
+  .final-cta__action--secondary:hover {
+    border-color: rgb(255 255 255 / 38%);
+    background: rgb(255 255 255 / 6%);
+  }
+}
+
+.final-cta__action:active {
+  transform: translateY(0);
+}
+
+.final-cta__action:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+}
+
+/*
+ * ============================================================
+ * FINAL CTA — TABLET
+ * ============================================================
+ *
+ * No Figma, as versões 768–959 e 960–1199 preservam
+ * a escala tipográfica do desktop. A redução acontece
+ * principalmente no espaço vertical interno do painel.
+ */
+
+@media (max-width: 1199px) {
+  .final-cta__panel {
+    min-height: 400px;
+    padding-block: var(--space-6);
+  }
+}
+
+/*
+ * ============================================================
+ * FINAL CTA — MOBILE
+ * ============================================================
+ */
+
+@media (max-width: 767px) {
+  .final-cta__inner {
+    width: calc(100% - 64px);
+    padding-block: 72px;
+  }
+
+  .final-cta__panel {
+    min-height: 488px;
+    gap: var(--space-5);
+    padding: 40px var(--space-5);
+  }
+
+  .final-cta__content {
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .final-cta__title {
+    max-width: none;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+  }
+
+  .final-cta__description {
+    max-width: none;
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+
+  .final-cta__actions {
+    width: 100%;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .final-cta__action--primary,
+  .final-cta__action--secondary {
+    width: 100%;
+  }
+}
