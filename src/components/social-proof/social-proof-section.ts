@@ -194,12 +194,12 @@ export const renderSocialProofSection = (): string => {
             data-social-proof-testimonial-area
             ${testimonialAreaAttributes}
           >
-          <div
+            <div
               id="social-proof-testimonial-stage"
               class="social-proof__testimonial-stage"
-          >
+            >
               ${testimonialsMarkup}
-          </div>
+            </div>
 
             ${testimonialControlsMarkup}
           </div>
