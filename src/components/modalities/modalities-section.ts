@@ -58,6 +58,8 @@ const renderModalityCard = (modality: Modality): string => {
         <a
           class="modalities__action"
           href="${modality.actionHref}"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           ${modality.actionLabel}
         </a>

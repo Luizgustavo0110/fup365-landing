@@ -256,16 +256,22 @@
   color: var(--color-brand-primary);
 }
 
-.modalities__action:hover {
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .modalities__action:hover {
+    transform: translateY(-1px);
+  }
+
+  .modalities_card--light .modalities_action:hover {
+    background: var(--color-brand-700);
+  }
+
+  .modalities_card--dark .modalities_action:hover {
+    background: var(--color-surface-soft);
+  }
 }
 
-.modalities__card--light .modalities__action:hover {
-  background: var(--color-brand-700);
-}
-
-.modalities__card--dark .modalities__action:hover {
-  background: var(--color-surface-soft);
+.modalities__action:active {
+  transform: translateY(0);
 }
 
 .modalities__action:focus-visible {
