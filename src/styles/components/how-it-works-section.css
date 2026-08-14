@@ -113,7 +113,7 @@
 .how-it-works__flow::after {
   background: var(--color-brand-accent);
   transform: scaleX(var(--how-it-works-track-progress));
-  transition: transform 120ms linear;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .how-it-works__steps {

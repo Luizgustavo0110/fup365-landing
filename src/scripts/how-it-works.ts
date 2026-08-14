@@ -4,8 +4,20 @@ const HOW_IT_WORKS_STEP_SELECTOR = '[data-how-it-works-step]';
 
 const HOW_IT_WORKS_TRACK_PROGRESS_PROPERTY = '--how-it-works-track-progress';
 
-const DESKTOP_PROGRESS_START_VIEWPORT_RATIO = 0.86;
-const DESKTOP_PROGRESS_END_VIEWPORT_RATIO = 0.14;
+/*
+ * No desktop e tablet, a narrativa percorre uma viewport completa
+ * sem alterar a altura natural da seção ou prender o scroll.
+ *
+ * A distribuição em 0.8 antecipa a ativação do quarto passo,
+ * enquanto 0.84 preserva um pequeno intervalo para ele permanecer
+ * ativo antes de todo o fluxo assumir o estado concluído.
+ */
+
+const DESKTOP_PROGRESS_START_VIEWPORT_RATIO = 1;
+const DESKTOP_PROGRESS_END_VIEWPORT_RATIO = 0;
+
+const DESKTOP_STEP_SEQUENCE_END_PROGRESS = 0.8;
+const DESKTOP_COMPLETION_PROGRESS = 0.84;
 
 const MOBILE_FOCUS_VIEWPORT_RATIO = 0.52;
 
@@ -46,7 +58,9 @@ const resolveDesktopProgress = (flow: HTMLElement): number => {
 
   const progressDistance = Math.max(1, progressStart - progressEnd);
 
-  return clampProgress((progressStart - flowRect.top) / progressDistance);
+  const travelledDistance = progressStart - flowRect.top;
+
+  return clampProgress(travelledDistance / progressDistance);
 };
 
 const resolveDesktopActiveIndex = (progress: number, stepCount: number): number => {
@@ -54,7 +68,9 @@ const resolveDesktopActiveIndex = (progress: number, stepCount: number): number 
     return 0;
   }
 
-  return Math.min(stepCount - 1, Math.floor(progress * stepCount));
+  const sequenceProgress = clampProgress(progress / DESKTOP_STEP_SEQUENCE_END_PROGRESS);
+
+  return Math.min(stepCount - 1, Math.floor(sequenceProgress * stepCount));
 };
 
 const resolveMobileActiveIndex = (steps: readonly HTMLElement[]): number => {
@@ -136,7 +152,7 @@ export const initHowItWorks = (): void => {
 
     const progress = resolveDesktopProgress(flow);
 
-    if (progress >= 1) {
+    if (progress >= DESKTOP_COMPLETION_PROGRESS) {
       applyCompletedStepStates(steps);
       applyTrackProgress(flow, 1);
 
@@ -147,7 +163,9 @@ export const initHowItWorks = (): void => {
 
     applyStepStates(steps, activeIndex);
 
-    applyTrackProgress(flow, progress);
+    const trackProgress = steps.length <= 1 ? 1 : activeIndex / (steps.length - 1);
+
+    applyTrackProgress(flow, trackProgress);
   };
 
   const requestUpdate = (): void => {
