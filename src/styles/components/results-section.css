@@ -1,0 +1,218 @@
+/*
+ * ============================================================
+ * RESULTS
+ * ============================================================
+ *
+ * A seção concentra os principais ganhos operacionais do FUP365
+ * em uma composição escura que cria contraste com Modalidades
+ * e prepara a transição para as provas quantitativas seguintes.
+ */
+
+.results {
+  background: var(--color-ink);
+  color: var(--color-text-inverse);
+}
+
+.results__inner {
+  display: grid;
+  gap: 56px;
+  padding-block: 104px;
+}
+
+/*
+ * ============================================================
+ * RESULTS — CABEÇALHO
+ * ============================================================
+ */
+
+.results__header {
+  display: grid;
+  width: min(100%, 720px);
+  justify-self: center;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.results__eyebrow {
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid rgb(153 204 51 / 24%);
+  border-radius: var(--radius-pill);
+  background: rgb(153 204 51 / 10%);
+  color: var(--color-brand-accent);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.results__title {
+  width: 100%;
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading-2);
+  letter-spacing: -0.02em;
+}
+
+.results__description {
+  width: min(100%, 680px);
+  margin: 0;
+  color: rgb(255 255 255 / 68%);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * ============================================================
+ * RESULTS — GRID
+ * ============================================================
+ */
+
+.results__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/*
+ * ============================================================
+ * RESULTS — CARD
+ * ============================================================
+ */
+
+.results__item {
+  display: grid;
+  min-width: 0;
+  min-height: 200px;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: var(--radius-large);
+  background: rgb(255 255 255 / 8%);
+}
+
+.results__number {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(153 204 51 / 25%);
+  border-radius: var(--radius-pill);
+  background: rgb(153 204 51 / 12%);
+  color: var(--color-brand-accent);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.results__item-title {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-card);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-card);
+}
+
+.results__item-description {
+  max-width: 480px;
+  margin: 0;
+  color: rgb(255 255 255 / 66%);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * ============================================================
+ * RESULTS — TABLET
+ * ============================================================
+ */
+
+@media (max-width: 1199px) {
+  .results__inner {
+    gap: var(--space-7);
+    padding-block: 72px;
+  }
+
+  .results__header {
+    width: min(100%, 680px);
+  }
+
+  .results__list {
+    gap: 20px;
+  }
+
+  .results__item {
+    min-height: 220px;
+    padding: var(--space-6);
+  }
+}
+
+/*
+ * ============================================================
+ * RESULTS — MOBILE
+ * ============================================================
+ *
+ * O Figma organiza os quatro resultados em duas colunas no
+ * mobile. Aqui priorizamos legibilidade e preservamos a mesma
+ * copy dos demais breakpoints usando uma única coluna.
+ */
+
+@media (max-width: 767px) {
+  .results__inner {
+    gap: var(--space-6);
+    padding-block: var(--space-8);
+  }
+
+  .results__header {
+    width: 100%;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .results__eyebrow {
+    justify-self: center;
+  }
+
+  .results__title {
+    max-width: 326px;
+    font-size: 2rem;
+    line-height: 2.375rem;
+    letter-spacing: -0.01em;
+  }
+
+  .results__description {
+    max-width: 326px;
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+
+  .results__list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .results__item {
+    min-height: 0;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border-radius: 20px;
+  }
+
+  .results__item-description {
+    max-width: none;
+    line-height: var(--line-height-body-small);
+  }
+}

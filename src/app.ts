@@ -3,6 +3,7 @@ import { renderHeroSection } from './components/hero/hero-section';
 import { renderHowItWorksSection } from './components/how-it-works/how-it-works-section';
 import { renderModalitiesSection } from './components/modalities/modalities-section';
 import { renderProblemSolutionSection } from './components/problem-solution/problem-solution-section';
+import { renderResultsSection } from './components/results/results-section';
 import { renderSiteFooter } from './components/site-footer';
 import { renderSiteHeader } from './components/site-header';
 import type { SectionId } from './types/navigation';
@@ -14,11 +15,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'resultados',
-    title: 'Resultados',
-    theme: 'light',
-  },
   {
     id: 'depoimentos',
     title: 'Prova social e depoimentos',
@@ -70,6 +66,7 @@ export const renderApp = (): string => {
       ${renderProblemSolutionSection()}
       ${renderHowItWorksSection()}
       ${renderModalitiesSection()}
+      ${renderResultsSection()}
       ${sectionsMarkup}
     </main>
 
