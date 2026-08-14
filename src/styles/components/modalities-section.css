@@ -1,0 +1,356 @@
+/*
+ * ============================================================
+ * MODALITIES
+ * ============================================================
+ *
+ * Compara as duas formas de operação do FUP365.
+ *
+ * A modalidade Plataforma prioriza autonomia da equipe,
+ * enquanto Follow-up recebe maior contraste para representar
+ * a camada adicional de serviço especializado.
+ */
+
+.modalities {
+  background: var(--color-surface-soft);
+  color: var(--color-text-primary);
+}
+
+.modalities__inner {
+  display: grid;
+  gap: 56px;
+  padding-block: 104px;
+}
+
+/*
+ * ============================================================
+ * MODALITIES — CABEÇALHO
+ * ============================================================
+ */
+
+.modalities__header {
+  display: grid;
+  width: min(100%, 720px);
+  justify-self: center;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.modalities__eyebrow {
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-default);
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.modalities__title {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-heading-2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading-2);
+  letter-spacing: -0.02em;
+}
+
+.modalities__description {
+  width: min(100%, 640px);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+/*
+ * ============================================================
+ * MODALITIES — CARDS
+ * ============================================================
+ */
+
+.modalities__cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--space-5);
+}
+
+.modalities__card {
+  display: flex;
+  min-width: 0;
+  min-height: 520px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: 48px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-large);
+}
+
+.modalities__card--light {
+  border-color: var(--color-border-default);
+  background: var(--color-surface-default);
+  color: var(--color-text-primary);
+}
+
+.modalities__card--dark {
+  background: var(--color-ink);
+  color: var(--color-text-inverse);
+}
+
+.modalities__card-main {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.modalities__card-header {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.modalities__card-eyebrow {
+  width: fit-content;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  color: var(--color-brand-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-section);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-section);
+}
+
+.modalities__card--dark .modalities__card-eyebrow {
+  background: rgb(153 204 51 / 12%);
+  color: var(--color-brand-accent);
+}
+
+.modalities__card-title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: 2rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.modalities__card-description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+}
+
+.modalities__card--dark .modalities__card-description {
+  color: rgb(255 255 255 / 66%);
+}
+
+/*
+ * ============================================================
+ * MODALITIES — BENEFÍCIOS
+ * ============================================================
+ */
+
+.modalities__features {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.modalities__feature {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-3);
+}
+
+.modalities__feature-check {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-brand-accent);
+  color: var(--color-ink);
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.modalities__feature-text {
+  color: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+}
+
+.modalities__card--dark .modalities__feature-text {
+  color: rgb(255 255 255 / 82%);
+}
+
+/*
+ * ============================================================
+ * MODALITIES — RESULTADO E CTA
+ * ============================================================
+ */
+
+.modalities__card-footer {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.modalities__highlight {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-soft);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-small);
+  text-align: center;
+}
+
+.modalities__card--dark .modalities__highlight {
+  background: rgb(153 204 51 / 10%);
+  color: var(--color-brand-accent);
+}
+
+.modalities__action {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-action);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-action);
+  text-align: center;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.modalities__card--light .modalities__action {
+  background: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.modalities__card--dark .modalities__action {
+  background: var(--color-surface-default);
+  color: var(--color-brand-primary);
+}
+
+.modalities__action:hover {
+  transform: translateY(-1px);
+}
+
+.modalities__card--light .modalities__action:hover {
+  background: var(--color-brand-700);
+}
+
+.modalities__card--dark .modalities__action:hover {
+  background: var(--color-surface-soft);
+}
+
+.modalities__action:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+}
+
+/*
+ * ============================================================
+ * MODALITIES — TABLET
+ * ============================================================
+ */
+
+@media (max-width: 1199px) {
+  .modalities__inner {
+    gap: 48px;
+    padding-block: 72px;
+  }
+
+  /*
+   * O Figma mantém 48px de padding em cards de aproximadamente
+   * 340px. No navegador reduzimos para 32px para preservar uma
+   * largura de leitura melhor sem alterar a composição.
+   */
+
+  .modalities__card {
+    min-height: 0;
+    padding: 32px;
+  }
+
+  .modalities__card-title {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+}
+
+/*
+ * ============================================================
+ * MODALITIES — MOBILE
+ * ============================================================
+ */
+
+@media (max-width: 767px) {
+  .modalities__inner {
+    gap: var(--space-6);
+    padding-block: 72px;
+  }
+
+  .modalities__header {
+    width: 100%;
+  }
+
+  .modalities__title {
+    max-width: 326px;
+    font-size: 2rem;
+    line-height: 2.375rem;
+    letter-spacing: -0.01em;
+  }
+
+  .modalities__description {
+    max-width: 326px;
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body-small);
+  }
+
+  .modalities__cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .modalities__card {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .modalities__card-title {
+    font-size: 1.5rem;
+    line-height: 1.875rem;
+  }
+
+  .modalities__card-main {
+    gap: var(--space-5);
+  }
+
+  .modalities__action {
+    width: 100%;
+  }
+}

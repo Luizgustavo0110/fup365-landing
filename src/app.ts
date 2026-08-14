@@ -1,6 +1,7 @@
-import { renderHowItWorksSection } from './components/how-it-works/how-it-works-section';
 import { renderClientsSection } from './components/clients/clients-section';
 import { renderHeroSection } from './components/hero/hero-section';
+import { renderHowItWorksSection } from './components/how-it-works/how-it-works-section';
+import { renderModalitiesSection } from './components/modalities/modalities-section';
 import { renderProblemSolutionSection } from './components/problem-solution/problem-solution-section';
 import { renderSiteFooter } from './components/site-footer';
 import { renderSiteHeader } from './components/site-header';
@@ -13,11 +14,6 @@ interface SectionDefinition {
 }
 
 const sections = [
-  {
-    id: 'modalidades',
-    title: 'Modalidades',
-    theme: 'dark',
-  },
   {
     id: 'resultados',
     title: 'Resultados',
@@ -73,6 +69,7 @@ export const renderApp = (): string => {
       ${renderClientsSection()}
       ${renderProblemSolutionSection()}
       ${renderHowItWorksSection()}
+      ${renderModalitiesSection()}
       ${sectionsMarkup}
     </main>
 
