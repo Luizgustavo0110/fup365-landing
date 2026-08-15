@@ -1,16 +1,4 @@
-@media (max-width: 959px) {
-  .development-section {
-    min-height: 360px;
-    padding-block: var(--space-8);
-  }
-}
-
 @media (max-width: 767px) {
-  .development-section {
-    min-height: 320px;
-    padding-block: var(--space-7);
-  }
-
   .site-footer__inner {
     flex-direction: column;
     align-items: flex-start;

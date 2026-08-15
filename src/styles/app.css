@@ -32,50 +32,6 @@
   background: var(--color-brand-500);
 }
 
-.development-section {
-  display: flex;
-  min-height: 400px;
-  align-items: center;
-  padding-block: var(--space-9);
-}
-
-.development-section--light {
-  background: var(--color-surface-soft);
-  color: var(--color-text-primary);
-}
-
-.development-section--dark {
-  background: var(--color-ink);
-  color: var(--color-text-inverse);
-}
-
-.development-section__content {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.development-section__eyebrow {
-  color: var(--color-brand-accent);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.development-section__title {
-  max-width: 760px;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-}
-
-.development-section__description {
-  max-width: 640px;
-  color: inherit;
-  font-size: clamp(1rem, 1.6vw, 1.125rem);
-  opacity: 0.72;
-}
-
 .site-footer {
   border-top: 1px solid var(--color-border-default);
   background: var(--color-surface-default);
