@@ -16,8 +16,8 @@ const renderClientLogo = (client: (typeof clients)[number]): string => {
         class="clients-section_logo clients-section_logo--${client.id}"
         src="${client.imageSrc}"
         alt="${client.name}"
-        width="${client.imageWidth}"
-        height="${client.imageHeight}"
+        width="${String(client.imageWidth)}"
+        height="${String(client.imageHeight)}"
         decoding="async"
       />
     </li>
