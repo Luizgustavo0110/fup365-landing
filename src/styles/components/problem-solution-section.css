@@ -6,9 +6,9 @@
  * A seção apresenta a transformação entre os desafios da gestão
  * de pedidos e a forma como o FUP365 organiza essas informações.
  *
- * Nesta etapa o primeiro estado permanece estático. A estrutura
- * já está preparada para receber a experiência orientada por
- * scroll posteriormente.
+ * A mesma estrutura visual sustenta os diferentes capítulos.
+ * Durante o scroll, o script atualiza conteúdo, opacidades e
+ * geometria sem duplicar o card entre os estados.
  */
 
 .problem-solution {
@@ -366,8 +366,8 @@
  * Ela define apenas a geometria final da solução.
  *
  * Os elementos visíveis continuam sendo os mesmos chips do
- * estado desafio; o JavaScript posteriormente os moverá até
- * estes anchors durante o progresso do scroll.
+ * estado desafio; o JavaScript os move até estes anchors
+ * durante o progresso do scroll.
  */
 
 .problem-solution__solution-layout {

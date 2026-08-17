@@ -115,15 +115,14 @@
   --line-height-section: 1rem;
 
   /*
-   * ============================================================
-   * LAYOUT — TOKENS TÉCNICOS PROVISÓRIOS
-   * ============================================================
-   *
-   * Estes valores sustentam a arquitetura responsiva existente,
-   * mas ainda não representam medidas aprovadas no Figma.
-   * Serão revisados durante a implementação dos componentes e
-   * layouts Desktop, Tablet e Mobile.
-   */
+ * ============================================================
+ * LAYOUT — TOKENS TÉCNICOS
+ * ============================================================
+ *
+ * Centraliza as medidas compartilhadas da arquitetura
+ * responsiva. Ajustes específicos de cada seção permanecem
+ * isolados nos estilos dos próprios componentes.
+ */
 
   --container-max-width: 1200px;
   --container-padding: clamp(20px, 4vw, 64px);

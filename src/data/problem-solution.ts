@@ -27,8 +27,8 @@ export const problemSolutionIntro = {
  * PROBLEM SOLUTION — ORDEM DOS CASOS
  * ============================================================
  *
- * Esta ordem será utilizada posteriormente para transformar
- * o progresso global do scroll em quatro capítulos.
+ * Define a sequência utilizada pelo motor para distribuir
+ * o progresso global do scroll entre os quatro capítulos.
  */
 
 export const problemSolutionCaseOrder = ['information', 'suppliers', 'delays', 'data'] as const;
@@ -38,12 +38,11 @@ export const problemSolutionCaseOrder = ['information', 'suppliers', 'delays', '
  * PROBLEM SOLUTION — CASOS
  * ============================================================
  *
- * O campo "slot" já prepara a migração do motor para posições
- * genéricas.
+ * O campo "slot" mantém posições genéricas e estáveis para os
+ * quatro elementos visuais de cada estado.
  *
- * O campo "id" ainda preserva os identificadores utilizados pelo
- * motor atual para que esta refatoração não altere visualmente
- * a experiência existente.
+ * O campo "id" preserva a identidade lógica consumida pelo
+ * motor durante as transições entre os capítulos.
  */
 
 export const problemSolutionCases = {
@@ -347,14 +346,12 @@ export type ProblemSolutionState =
 
 /*
  * ============================================================
- * PROBLEM SOLUTION — COMPATIBILIDADE COM O MOTOR ATUAL
+ * PROBLEM SOLUTION — ESTADO INICIAL
  * ============================================================
  *
- * Enquanto o componente ainda trabalha com apenas o primeiro
- * capítulo, mantemos estes exports.
- *
- * Eles serão removidos quando o componente passar a utilizar
- * problemSolutionCases diretamente.
+ * O renderer utiliza o primeiro caso para construir a estrutura
+ * visual inicial. Durante o scroll, o script atualiza o conteúdo
+ * dos capítulos diretamente a partir de problemSolutionCases.
  */
 
 export const problemSolutionStates = problemSolutionCases.information.states;

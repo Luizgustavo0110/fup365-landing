@@ -558,11 +558,11 @@ const measureVisualGeometry = (
   /*
    * Este é um detalhe importante da responsividade.
    *
-   * Nos seus testes compactos o anchor e o core ficaram com
-   * aproximadamente 80px de distância.
+   * Em larguras compactas, a distância entre o anchor e o core
+   * pode ficar próxima de 80px.
    *
-   * Isso pode ser insuficiente para o maior chip +
-   * o raio do núcleo.
+   * Esse espaço pode ser insuficiente para acomodar o maior chip
+   * somado ao raio do núcleo.
    *
    * Em vez de criar outro breakpoint, descobrimos o maior chip
    * dinamicamente e preservamos pelo menos 12px de respiro.
