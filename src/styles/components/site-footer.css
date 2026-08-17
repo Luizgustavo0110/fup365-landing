@@ -1,0 +1,244 @@
+/*
+ * ============================================================
+ * FOOTER — DESKTOP
+ * ============================================================
+ *
+ * Reproduz a composição aprovada no Figma com marca, navegação
+ * e contato distribuídos no container global de 1200px.
+ */
+
+.site-footer {
+  padding-block: 72px 40px;
+  background: var(--color-ink);
+  color: var(--color-text-inverse);
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: 32px;
+}
+
+.site-footer__main {
+  display: grid;
+  grid-template-columns: minmax(0, 480px) max-content 220px;
+  min-height: 176px;
+  align-items: start;
+  justify-content: space-between;
+  column-gap: 48px;
+}
+
+.site-footer__brand {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: 16px;
+}
+
+.site-footer__brand-link {
+  width: max-content;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-body);
+  font-size: 24px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 32px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.site-footer__description {
+  max-width: 440px;
+  margin: 0;
+  color: rgb(255 255 255 / 60%);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body-small);
+}
+
+.site-footer__navigation,
+.site-footer__contact {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.site-footer__navigation {
+  width: max-content;
+}
+
+.site-footer__contact {
+  width: 220px;
+}
+
+.site-footer__group-title {
+  margin: 0;
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-body-small);
+}
+
+.site-footer__list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__link {
+  color: rgb(255 255 255 / 60%);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body-small);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__brand-link:hover,
+  .site-footer__link:hover {
+    color: var(--color-brand-accent);
+  }
+}
+
+.site-footer__brand-link:focus-visible,
+.site-footer__link:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-small);
+}
+
+.site-footer__divider {
+  width: 100%;
+  height: 1px;
+  background: rgb(255 255 255 / 10%);
+}
+
+.site-footer__bottom {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.site-footer__copyright {
+  margin: 0;
+  color: rgb(255 255 255 / 60%);
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+}
+
+.site-footer__legal {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-footer__legal-item {
+  color: rgb(255 255 255 / 60%);
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-regular);
+  line-height: 20px;
+}
+
+/*
+ * ============================================================
+ * FOOTER — TABLET
+ * ============================================================
+ *
+ * O Tablet preserva as três áreas do Desktop, mas utiliza
+ * padding interno próprio para acomodar o conteúdo em larguras
+ * menores sem depender das dimensões fixas do layout desktop.
+ */
+
+@media (max-width: 1199px) {
+  .site-footer__inner {
+    width: 100%;
+    padding: 48px 48px 32px;
+  }
+
+  .site-footer__main {
+    grid-template-columns: minmax(0, 300px) max-content 220px;
+    column-gap: 24px;
+  }
+}
+
+/*
+ * No Tablet Compact, a altura acompanha a composição aprovada
+ * em 768px sem alterar a estrutura horizontal das três colunas.
+ */
+@media (min-width: 768px) and (max-width: 959px) {
+  .site-footer__main {
+    min-height: 162px;
+  }
+}
+
+/*
+ * ============================================================
+ * FOOTER — MOBILE
+ * ============================================================
+ *
+ * Em telas menores, marca, navegação e contato passam para
+ * fluxo vertical. O conteúdo mantém 32px de respiro lateral
+ * para evitar compressão e qualquer overflow horizontal.
+ */
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding-block: 64px 32px;
+  }
+
+  .site-footer__inner {
+    width: calc(100% - 64px);
+    gap: 0;
+    padding: 0;
+  }
+
+  .site-footer__main {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    gap: 32px;
+  }
+
+  .site-footer__brand {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .site-footer__description {
+    max-width: none;
+  }
+
+  .site-footer__navigation,
+  .site-footer__contact {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .site-footer__list {
+    gap: 8px;
+  }
+
+  .site-footer__divider {
+    margin-top: 32px;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .site-footer__legal {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+}

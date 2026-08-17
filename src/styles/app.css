@@ -3,13 +3,6 @@
   margin-inline: auto;
 }
 
-.site-footer__brand {
-  flex: 0 0 auto;
-  font-size: 1.125rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
 .button {
   display: inline-flex;
   min-height: 44px;
@@ -30,21 +23,4 @@
 
 .button--primary:hover {
   background: var(--color-brand-500);
-}
-
-.site-footer {
-  border-top: 1px solid var(--color-border-default);
-  background: var(--color-surface-default);
-}
-
-.site-footer__inner {
-  display: flex;
-  min-height: 140px;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-5);
-}
-
-.site-footer__description {
-  color: var(--color-text-secondary);
 }
