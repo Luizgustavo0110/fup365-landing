@@ -529,13 +529,6 @@
   line-height: 0.9;
 }
 
-.problem-solution__main-label {
-  font-family: var(--font-family-body);
-  font-size: 9px;
-  font-weight: var(--font-weight-semibold);
-  line-height: 1;
-}
-
 .problem-solution__card[data-problem-solution-state='solution']
   .problem-solution__main-icon--challenge {
   transform: scale(0.72) rotate(-8deg);
