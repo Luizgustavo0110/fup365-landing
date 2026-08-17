@@ -2,15 +2,12 @@ import { problemSolutionCaseOrder, problemSolutionCases } from '../data/problem-
 
 import type { ProblemSolutionCaseId, ProblemSolutionState } from '../data/problem-solution';
 
-type ProblemSolutionPhase = 'challenge' | 'transition' | 'solution';
-
 type ProblemSolutionCardState = ProblemSolutionState['type'];
 
 type ProblemSolutionNarrativeMode = 'case' | 'handoff';
 
 interface ProblemSolutionNarrativeFrame {
   readonly caseId: ProblemSolutionCaseId;
-  readonly caseIndex: number;
   readonly mode: ProblemSolutionNarrativeMode;
   readonly localProgress: number;
   readonly handoffProgress: number;
@@ -98,8 +95,6 @@ const CONNECTOR_PROGRESS_WINDOWS = {
 
 const CONNECTOR_MINIMUM_GAP = 12;
 
-const PROGRESS_PROPERTY = '--problem-solution-progress';
-
 const CHALLENGE_OPACITY_PROPERTY = '--problem-solution-challenge-opacity';
 
 const SOLUTION_OPACITY_PROPERTY = '--problem-solution-solution-opacity';
@@ -107,8 +102,6 @@ const SOLUTION_OPACITY_PROPERTY = '--problem-solution-solution-opacity';
 const RING_CHALLENGE_OPACITY_PROPERTY = '--problem-solution-ring-challenge-opacity';
 
 const RING_SOLUTION_OPACITY_PROPERTY = '--problem-solution-ring-solution-opacity';
-
-const LOCAL_PROGRESS_PROPERTY = '--problem-solution-local-progress';
 
 const NARRATIVE_CONTENT_OPACITY_PROPERTY = '--problem-solution-narrative-content-opacity';
 
@@ -176,7 +169,6 @@ const resolveNarrativeFrame = (progress: number): ProblemSolutionNarrativeFrame 
     if (weightedProgress <= caseEnd || caseIndex === caseCount - 1) {
       return {
         caseId,
-        caseIndex,
         mode: 'case',
         localProgress: clampProgress((weightedProgress - caseStart) / CASE_SEGMENT_WEIGHT),
         handoffProgress: 0,
@@ -194,7 +186,6 @@ const resolveNarrativeFrame = (progress: number): ProblemSolutionNarrativeFrame 
     if (weightedProgress <= handoffEnd) {
       return {
         caseId,
-        caseIndex,
         mode: 'handoff',
         localProgress: 1,
         handoffProgress: clampProgress((weightedProgress - handoffStart) / HANDOFF_SEGMENT_WEIGHT),
@@ -211,33 +202,11 @@ const resolveNarrativeFrame = (progress: number): ProblemSolutionNarrativeFrame 
 
   return {
     caseId: lastCaseId,
-    caseIndex: lastCaseIndex,
     mode: 'case',
     localProgress: 1,
     handoffProgress: 0,
     nextCaseId: null,
   };
-};
-
-const applyNarrativeDebugState = (
-  section: HTMLElement,
-  frame: ProblemSolutionNarrativeFrame,
-): void => {
-  section.dataset.problemSolutionNarrativeCase = frame.caseId;
-
-  section.dataset.problemSolutionNarrativeCaseIndex = String(frame.caseIndex);
-
-  section.dataset.problemSolutionNarrativeMode = frame.mode;
-
-  section.dataset.problemSolutionNarrativeLocalProgress = frame.localProgress.toFixed(4);
-
-  section.dataset.problemSolutionNarrativeHandoffProgress = frame.handoffProgress.toFixed(4);
-
-  if (frame.nextCaseId) {
-    section.dataset.problemSolutionNarrativeNextCase = frame.nextCaseId;
-  } else {
-    section.removeAttribute('data-problem-solution-narrative-next-case');
-  }
 };
 
 /*
@@ -443,24 +412,6 @@ const resolveSafeTargetCenter = (
 
 /*
  * ============================================================
- * PROBLEM SOLUTION — FASES
- * ============================================================
- */
-
-const resolvePhase = (progress: number): ProblemSolutionPhase => {
-  if (progress < 0.22) {
-    return 'challenge';
-  }
-
-  if (progress < 0.78) {
-    return 'transition';
-  }
-
-  return 'solution';
-};
-
-/*
- * ============================================================
  * PROBLEM SOLUTION — ESTADO DO CARD
  * ============================================================
  */
@@ -500,22 +451,6 @@ const calculateProgress = (interactive: HTMLElement, stage: HTMLElement): number
   const travelledDistance = stickyTop - interactiveRect.top;
 
   return clampProgress(travelledDistance / scrollableDistance);
-};
-
-/*
- * ============================================================
- * PROBLEM SOLUTION — APLICAÇÃO DO PROGRESSO
- * ============================================================
- */
-
-const applyProgress = (section: HTMLElement, progress: number): void => {
-  const phase = resolvePhase(progress);
-
-  section.style.setProperty(LOCAL_PROGRESS_PROPERTY, progress.toFixed(4));
-
-  if (section.dataset.problemSolutionPhase !== phase) {
-    section.dataset.problemSolutionPhase = phase;
-  }
 };
 
 const applyCardVisualBlend = (section: HTMLElement, progress: number): void => {
@@ -1023,8 +958,6 @@ export const initProblemSolution = (): void => {
 
       applyNarrativeContentPresentation(1, 0);
 
-      applyProgress(section, frame.localProgress);
-
       applyCardVisualBlend(section, frame.localProgress);
 
       applyRingVisualBlend(section, frame.localProgress);
@@ -1044,8 +977,6 @@ export const initProblemSolution = (): void => {
     const visualProgress = shouldUseNextCase ? 0 : 1;
 
     activateCase(visibleCaseId);
-
-    applyProgress(section, visualProgress);
 
     applyCardVisualBlend(section, visualProgress);
 
@@ -1087,10 +1018,6 @@ export const initProblemSolution = (): void => {
     }
 
     const narrativeFrame = resolveNarrativeFrame(displayedProgress);
-
-    applyNarrativeDebugState(section, narrativeFrame);
-
-    section.style.setProperty(PROGRESS_PROPERTY, displayedProgress.toFixed(4));
 
     applyNarrativeFrame(narrativeFrame);
 
@@ -1158,10 +1085,6 @@ export const initProblemSolution = (): void => {
     );
 
     const narrativeFrame = resolveNarrativeFrame(displayedProgress);
-
-    applyNarrativeDebugState(section, narrativeFrame);
-
-    section.style.setProperty(PROGRESS_PROPERTY, displayedProgress.toFixed(4));
 
     applyNarrativeFrame(narrativeFrame);
   };
