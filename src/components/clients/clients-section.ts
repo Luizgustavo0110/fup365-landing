@@ -13,7 +13,7 @@ const renderClientLogo = (client: (typeof clients)[number]): string => {
   return `
     <li class="clients-section__item">
       <img
-        class="clients-section_logo clients-section_logo--${client.id}"
+        class="clients-section__logo clients-section__logo--${client.id}"
         src="${client.imageSrc}"
         alt="${client.name}"
         width="${String(client.imageWidth)}"
