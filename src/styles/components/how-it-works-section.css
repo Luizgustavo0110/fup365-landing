@@ -248,10 +248,6 @@
   color: var(--color-text-secondary);
 }
 
-.how-it-works__step[data-how-it-works-state='upcoming'] .how-it-works__step-description {
-  opacity: 0.75;
-}
-
 /*
  * ============================================================
  * HOW IT WORKS — TABLET
