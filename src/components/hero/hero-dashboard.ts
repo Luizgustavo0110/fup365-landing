@@ -86,7 +86,7 @@ const renderStatusItem = (status: (typeof heroDashboardData.statuses)[number]): 
   const statusValue = String(status.value);
 
   return `
-    <li class="hero-dashboard__status-item">
+    <li class="hero-dashboard__status-item hero-dashboard__status-item--${status.tone}">
       ${status.label} ${statusValue}%
     </li>
   `;

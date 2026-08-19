@@ -198,12 +198,41 @@
 }
 
 .hero-dashboard__status-item {
+  position: relative;
   color: var(--color-text-strong);
   font-family: var(--font-family-heading);
   font-size: 12px;
   font-weight: var(--font-weight-regular);
   line-height: 1.35;
   white-space: nowrap;
+}
+
+.hero-dashboard__status-item::before {
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hero-dashboard-status-color);
+  content: '';
+  transform: translateY(-50%);
+}
+
+.hero-dashboard__status-item--success {
+  --hero-dashboard-status-color: var(--color-success);
+}
+
+.hero-dashboard__status-item--warning {
+  --hero-dashboard-status-color: var(--color-warning);
+}
+
+.hero-dashboard__status-item--danger {
+  --hero-dashboard-status-color: var(--color-error);
+}
+
+.hero-dashboard__status-item--neutral {
+  --hero-dashboard-status-color: var(--color-text-secondary);
 }
 
 /*
