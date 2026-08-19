@@ -11,8 +11,6 @@ export const footerContent = {
   navigationTitle: 'Navegação',
   contactTitle: 'Contato',
   copyright: '© 2026 FUP365. Todos os direitos reservados.',
-  privacyLabel: 'Política de Privacidade',
-  termsLabel: 'Termos de Uso',
 } as const;
 
 export const footerNavigationItems = [

@@ -17,10 +17,6 @@ const renderFooterNavigationItem = (item: (typeof footerNavigationItems)[number]
 export const renderSiteFooter = (): string => {
   const navigationMarkup = footerNavigationItems.map(renderFooterNavigationItem).join('');
 
-  /*
-   * Os itens legais permanecem sem href até existirem URLs oficiais.
-   * Isso evita publicar links aparentes que não possuem destino real.
-   */
   return `
     <footer class="site-footer">
       <div class="container site-footer__inner">
@@ -101,16 +97,6 @@ export const renderSiteFooter = (): string => {
           <p class="site-footer__copyright">
             ${footerContent.copyright}
           </p>
-
-          <div class="site-footer__legal">
-            <span class="site-footer__legal-item">
-              ${footerContent.privacyLabel}
-            </span>
-
-            <span class="site-footer__legal-item">
-              ${footerContent.termsLabel}
-            </span>
-          </div>
         </div>
       </div>
     </footer>

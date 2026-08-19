@@ -134,20 +134,6 @@
   line-height: 20px;
 }
 
-.site-footer__legal {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.site-footer__legal-item {
-  color: rgb(255 255 255 / 60%);
-  font-family: var(--font-family-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-regular);
-  line-height: 20px;
-}
-
 /*
  * ============================================================
  * FOOTER — TABLET
@@ -235,10 +221,5 @@
     align-items: flex-start;
     gap: 16px;
     margin-top: 24px;
-  }
-
-  .site-footer__legal {
-    flex-wrap: wrap;
-    gap: 24px;
   }
 }
