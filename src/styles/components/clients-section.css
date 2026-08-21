@@ -68,11 +68,13 @@
 }
 
 .clients-section__logo--petro-reconcavo {
-  width: 78px;
+  width: 124px;
+  max-width: 124px;
 }
 
 .clients-section__logo--pedra-agroindustrial {
-  width: 70px;
+  width: 84px;
+  max-height: 48px;
 }
 
 .clients-section__logo--bevap {
