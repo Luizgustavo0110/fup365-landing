@@ -75,10 +75,6 @@ export const renderHeroSection = (): string => {
               Falar pelo WhatsApp
             </a>
           </div>
-
-          <p class="hero-section__integrations">
-            Integrações via API, EDI, Excel e ERP
-          </p>
         </div>
 
         ${renderHeroDashboard()}

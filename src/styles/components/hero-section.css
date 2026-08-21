@@ -118,14 +118,6 @@
   background: var(--color-surface-soft);
 }
 
-.hero-section__integrations {
-  color: var(--color-text-strong);
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-body-small);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-body-small);
-}
-
 /*
  * ============================================================
  * HERO — TABLET WIDE
@@ -263,11 +255,5 @@
   .hero-section__action--primary,
   .hero-section__action--secondary {
     width: 100%;
-  }
-
-  .hero-section__integrations {
-    width: 100%;
-    line-height: 1.2;
-    text-align: center;
   }
 }
