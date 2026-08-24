@@ -26,7 +26,7 @@ export const howItWorksSteps = [
     number: '02',
     title: 'Acione os fornecedores',
     description:
-      'Novos pedidos e pendências são disponibilizados aos fornecedores para tratamento direto na plataforma.',
+      'Aciona seus fornecedores automaticamente. Novos pedidos, pendências e solicitações de atualização são disponibilizados para tratamento em um fluxo centralizado.',
   },
   {
     id: 'follow-up',
