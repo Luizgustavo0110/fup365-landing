@@ -11,9 +11,9 @@ import { renderHeroDashboard } from './hero-dashboard';
  */
 
 const heroBenefits = [
-  'Antecipe riscos antes que impactem a operação',
-  'Centralize a comunicação com fornecedores',
-  'Tome decisões com mais visibilidade e histórico',
+  'Menos tempo cobrando fornecedores',
+  'Mais visibilidade sobre prazos e pendências',
+  'Histórico e indicadores para decisões mais rápidas',
 ] as const;
 
 const renderHeroBenefit = (benefit: string): string => {
@@ -40,16 +40,15 @@ export const renderHeroSection = (): string => {
           </p>
 
           <h1
-            id="hero-title"
-            class="hero-section__title"
+          id="hero-title"
+          class="hero-section__title"
           >
-            Mais controle e previsibilidade para seus pedidos de compra.
+          Sua equipe compra. O FUP365 cuida do follow-up.
           </h1>
 
           <p class="hero-section__description">
-            Automatize o follow-up, centralize a comunicação com fornecedores
-            e acompanhe pedidos, prazos e ocorrências em uma única plataforma
-            integrada à sua operação.
+            Automatize o acompanhamento dos pedidos, centralize a comunicação com 
+            fornecedores e antecipe riscos de atraso antes que impactem sua operação.
           </p>
 
           <ul class="hero-section__benefits">
