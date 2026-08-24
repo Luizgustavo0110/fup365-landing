@@ -19,8 +19,8 @@ export const clients = [
     id: 'petro-reconcavo',
     name: 'PetroReconcavo',
     imageSrc: 'assets/clients/petro-reconcavo.png',
-    imageWidth: 180,
-    imageHeight: 60,
+    imageWidth: 814,
+    imageHeight: 245,
   },
   {
     id: 'pedra-agroindustrial',
@@ -42,5 +42,12 @@ export const clients = [
     imageSrc: 'assets/clients/dp-world.png',
     imageWidth: 128,
     imageHeight: 80,
+  },
+  {
+    id: 'grupo-olho-dagua',
+    name: "Grupo Olho D'Água",
+    imageSrc: 'assets/clients/grupo-olho-dagua.png',
+    imageWidth: 1103,
+    imageHeight: 226,
   },
 ] as const;
