@@ -41,7 +41,7 @@ export const renderSiteHeader = (): string => {
         >
           <img
             class="site-brand__logo"
-            src="/assets/brands/fup365-logo.png"
+            src="assets/brands/fup365-logo.png"
             alt=""
             width="2000"
             height="566"
