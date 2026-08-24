@@ -17,24 +17,24 @@ export interface Modality {
 }
 
 export const modalitiesContent = {
-  eyebrow: 'MODALIDADES',
-  title: 'Escolha a forma ideal de operar com o FUP365.',
-  description:
-    'Utilize a tecnologia com sua própria equipe ou conte também com um serviço especializado de follow-up para acompanhar fornecedores e pedidos.',
+  eyebrow: 'DUAS FORMAS DE OPERAR',
+  title: 'Tecnologia para automatizar. Especialistas para acompanhar. Ou os dois.',
+  description: 'Escolha como o FUP365 participa da sua operação de Compras.',
 } as const;
 
 export const modalities = [
   {
     id: 'platform',
-    eyebrow: 'PLATAFORMA',
+    eyebrow: 'PLATAFORMA FUP365',
     title: 'Plataforma FUP365',
     description:
-      'Centralize pedidos, atualizações e históricos em uma única plataforma para sua equipe acompanhar toda a operação.',
+      'Sua equipe utiliza o FUP365 para centralizar e automatizar o acompanhamento dos pedidos.',
     features: [
-      'Centralização de pedidos e atualizações',
-      'Comunicação e histórico em um único fluxo',
-      'Indicadores, relatórios e acompanhamento',
-      'Integrações via API, EDI, Excel e ERP',
+      'Pedidos e atualizações centralizados',
+      'Comunicação com fornecedores',
+      'Histórico completo das tratativas',
+      'Indicadores e relatórios',
+      'Integração via API, EDI, Excel e ERP',
     ],
     highlight: 'Sua equipe no controle',
     actionLabel: 'Agendar uma demonstração',
@@ -43,17 +43,18 @@ export const modalities = [
   },
   {
     id: 'follow-up',
-    eyebrow: 'PLATAFORMA + FOLLOW-UP',
+    eyebrow: 'PLATAFORMA FUP365 + SERVIÇO DE FOLLOW-UP',
     title: 'FUP365 + Serviço de Follow-up',
     description:
-      'Tecnologia e acompanhamento especializado para apoiar sua operação e manter fornecedores e pedidos sob controle.',
+      'Além da plataforma, nossa equipe acompanha ativamente fornecedores, pedidos e pendências da sua operação.',
     features: [
-      'Tudo o que você tem na Plataforma FUP365',
+      'Tudo da Plataforma FUP365',
       'Acompanhamento ativo dos fornecedores',
-      'Cobranças e tratativas de pendências',
-      'Visibilidade contínua para a equipe de compras',
+      'Cobrança de retornos e pendências',
+      'Atualização contínua dos pedidos',
+      'Visibilidade para sua equipe de Compras',
     ],
-    highlight: 'Especialistas apoiando sua operação',
+    highlight: 'Seus compradores focam em comprar. Nós ajudamos a cuidar do acompanhamento',
     actionLabel: 'Falar pelo WhatsApp',
     actionHref: externalLinks.whatsapp,
     theme: 'dark',
