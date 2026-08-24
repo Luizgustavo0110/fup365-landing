@@ -15,8 +15,8 @@ export const renderApp = (): string => {
 
     <main id="main-content">
       ${renderHeroSection()}
-      ${renderClientsSection()}
       ${renderProblemSolutionSection()}
+      ${renderClientsSection()}
       ${renderHowItWorksSection()}
       ${renderModalitiesSection()}
       ${renderResultsSection()}
