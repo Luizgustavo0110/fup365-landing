@@ -8,7 +8,7 @@ export interface ResultItem {
 }
 
 export const resultsContent = {
-  eyebrow: 'RESULTADOS',
+  eyebrow: 'O QUE MUDA NA SUA OPERAÇÃO',
   title: 'Mais visibilidade para agir antes que o atraso aconteça.',
   description:
     'O FUP365 transforma atualizações, ocorrências e históricos em uma visão mais clara da operação, apoiando o acompanhamento de pedidos, fornecedores e riscos.',

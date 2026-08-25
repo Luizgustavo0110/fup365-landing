@@ -16,8 +16,10 @@ export interface SocialProofTestimonial {
 }
 
 export const socialProofContent = {
-  eyebrow: 'RESULTADOS QUE GERAM IMPACTO',
-  title: 'Mais de 8 mil atualizações automatizadas por mês.',
+  eyebrow: 'NA PRÁTICA',
+  title: 'Veja o FUP365 operando em escala.',
+  context: 'Em uma única operação:',
+  highlight: 'Mais de 8 mil atualizações automatizadas por mês',
   footnote: 'Resultados de uma operação que substituiu controles manuais pelo FUP365.',
 } as const;
 

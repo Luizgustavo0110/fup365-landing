@@ -175,6 +175,14 @@ export const renderSocialProofSection = (): string => {
               >
                 ${socialProofContent.title}
               </h2>
+
+              <p class="social-proof__context">
+                ${socialProofContent.context}
+              </p>
+
+              <p class="social-proof__highlight">
+                ${socialProofContent.highlight}
+              </p>
             </header>
 
             <dl
