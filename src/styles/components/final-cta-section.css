@@ -75,6 +75,12 @@
   letter-spacing: -0.02em;
 }
 
+.final-cta__descriptions {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+}
+
 .final-cta__description {
   max-width: 680px;
   margin: 0;

@@ -22,9 +22,15 @@ export const renderFinalCtaSection = (): string => {
               ${finalCtaContent.title}
             </h2>
 
-            <p class="final-cta__description">
-              ${finalCtaContent.description}
-            </p>
+            <div class="final-cta__descriptions">
+              <p class="final-cta__description">
+                ${finalCtaContent.description}
+              </p>
+
+              <p class="final-cta__description">
+                ${finalCtaContent.secondaryDescription}
+              </p>
+            </div>
           </div>
 
           <div class="final-cta__actions">

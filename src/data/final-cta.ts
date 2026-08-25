@@ -1,8 +1,10 @@
 export const finalCtaContent = {
   eyebrow: 'FALE COM A GENTE',
-  title: 'Transforme o acompanhamento dos seus pedidos em um fluxo mais previsível.',
+  title: 'Quanto tempo sua equipe gasta fazendo follow-up de pedidos?',
   description:
-    'Conheça o FUP365 em uma demonstração ou fale com nossa equipe para entender qual modalidade faz mais sentido para a sua operação.',
+    'Conheça como o FUP365 pode centralizar o acompanhamento, automatizar o contato com fornecedores e dar mais visibilidade aos riscos da sua operação.',
+  secondaryDescription:
+    'Use apenas a plataforma ou conte também com nossa equipe especializada de follow‑up.',
   primaryActionLabel: 'Agendar uma demonstração',
-  secondaryActionLabel: 'Falar pelo WhatsApp',
+  secondaryActionLabel: 'Falar com um especialista',
 } as const;
