@@ -27,8 +27,7 @@ export const modalities = [
     id: 'platform',
     eyebrow: 'PLATAFORMA FUP365',
     title: 'Plataforma FUP365',
-    description:
-      'Sua equipe utiliza o FUP365 para centralizar e automatizar o acompanhamento dos pedidos.',
+    description: 'Sua equipe opera. O FUP365 automatiza.',
     features: [
       'Pedidos e atualizações centralizados',
       'Comunicação com fornecedores',
@@ -45,8 +44,7 @@ export const modalities = [
     id: 'follow-up',
     eyebrow: 'PLATAFORMA FUP365 + SERVIÇO DE FOLLOW-UP',
     title: 'FUP365 + Serviço de Follow-up',
-    description:
-      'Além da plataforma, nossa equipe acompanha ativamente fornecedores, pedidos e pendências da sua operação.',
+    description: 'Nossa equipe acompanha. Seus compradores focam em comprar.',
     features: [
       'Tudo da Plataforma FUP365',
       'Acompanhamento ativo dos fornecedores',

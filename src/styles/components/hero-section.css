@@ -62,20 +62,16 @@
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-body);
 }
-
-.hero-section__benefits {
-  display: grid;
-  gap: 10px;
+.hero-section__support {
+  width: 520px;
+  max-width: 100%;
   margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hero-section__benefit {
-  color: var(--color-text-strong);
+  padding-left: 16px;
+  border-left: 2px solid var(--color-brand-accent);
+  color: var(--color-text-secondary);
   font-family: var(--font-family-body);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-medium);
   line-height: var(--line-height-body);
 }
 
@@ -236,13 +232,13 @@
     line-height: var(--line-height-heading-2);
   }
 
-  .hero-section__description,
-  .hero-section__benefit {
+  .hero-section__description {
     line-height: 1.2;
   }
 
-  .hero-section__benefits {
-    gap: 12px;
+  .hero-section__support {
+    width: 100%;
+    line-height: 1.4;
   }
 
   .hero-section__actions {

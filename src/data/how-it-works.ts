@@ -24,9 +24,9 @@ export const howItWorksSteps = [
   {
     id: 'suppliers',
     number: '02',
-    title: 'Acione os fornecedores',
+    title: 'Automatize o contato com fornecedores',
     description:
-      'Aciona seus fornecedores automaticamente. Novos pedidos, pendências e solicitações de atualização são disponibilizados para tratamento em um fluxo centralizado.',
+      'O FUP365 envia novos pedidos, lembretes e solicitações de atualização automaticamente, mantendo as tratativas centralizadas e rastreáveis.',
   },
   {
     id: 'follow-up',

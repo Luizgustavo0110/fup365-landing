@@ -10,23 +10,7 @@ import { renderHeroDashboard } from './hero-dashboard';
  * permitindo evoluir conteúdo e dashboard de forma independente.
  */
 
-const heroBenefits = [
-  'Menos tempo cobrando fornecedores',
-  'Mais visibilidade sobre prazos e pendências',
-  'Histórico e indicadores para decisões mais rápidas',
-] as const;
-
-const renderHeroBenefit = (benefit: string): string => {
-  return `
-    <li class="hero-section__benefit">
-      ${benefit}
-    </li>
-  `;
-};
-
 export const renderHeroSection = (): string => {
-  const benefitsMarkup = heroBenefits.map(renderHeroBenefit).join('');
-
   return `
     <section
       id="inicio"
@@ -51,9 +35,9 @@ export const renderHeroSection = (): string => {
             fornecedores e antecipe riscos de atraso antes que impactem sua operação.
           </p>
 
-          <ul class="hero-section__benefits">
-            ${benefitsMarkup}
-          </ul>
+          <p class="hero-section__support">
+            Antecipe o problema: sua equipe sabendo do atraso antes mesmo dele acontecer.
+          </p>
 
           <div class="hero-section__actions">
             <a
