@@ -24,14 +24,18 @@ export const renderHeroSection = (): string => {
           </p>
 
           <h1
-          id="hero-title"
-          class="hero-section__title"
+            id="hero-title"
+            class="hero-section__title"
           >
-          Sua equipe compra. O FUP365 cuida do follow-up.
+            Software de Follow-up e Gestão de Pedidos de Compra.
           </h1>
 
+          <p class="hero-section__lead">
+            Sua equipe compra. O FUP365 cuida do follow-up.
+          </p>
+
           <p class="hero-section__description">
-            Automatize o acompanhamento dos pedidos, centralize a comunicação com 
+            Automatize o acompanhamento dos pedidos, centralize a comunicação com
             fornecedores e antecipe riscos de atraso antes que impactem sua operação.
           </p>
 
