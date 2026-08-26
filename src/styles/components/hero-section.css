@@ -53,6 +53,17 @@
   line-height: var(--line-height-hero);
 }
 
+.hero-section__lead {
+  width: 520px;
+  max-width: 100%;
+  margin: 0;
+  color: var(--color-text-strong);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+}
+
 .hero-section__description {
   width: 520px;
   max-width: 100%;
@@ -230,17 +241,6 @@
   .hero-section__title {
     font-size: var(--font-size-heading-2);
     line-height: var(--line-height-heading-2);
-  }
-
-  .hero-section__lead {
-    width: 520px;
-    max-width: 100%;
-    margin: 0;
-    color: var(--color-text-strong);
-    font-family: var(--font-family-body);
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--line-height-body);
   }
 
   .hero-section__description {
