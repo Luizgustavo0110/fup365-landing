@@ -4,6 +4,8 @@ Landing page institucional do FUP365, plataforma voltada à gestão de pedidos d
 
 **Produção:** https://www.fup365.com.br/site/
 
+![FUP365 — Landing Page](./docs/images/fup365-cover.png)
+
 ## Sobre o projeto
 
 A landing page foi desenvolvida para apresentar o FUP365 de forma mais clara e objetiva, aproximando a comunicação do site da operação da plataforma.
@@ -11,6 +13,18 @@ A landing page foi desenvolvida para apresentar o FUP365 de forma mais clara e o
 O projeto apresenta o funcionamento da solução, modalidades de operação, resultados, clientes, depoimentos e canais comerciais em uma interface responsiva para desktop, tablet e mobile.
 
 Além da construção visual, o desenvolvimento envolveu decisões relacionadas a arquitetura, acessibilidade, performance, SEO técnico e publicação em hospedagem estática.
+
+## Interface
+
+A interface foi construída para apresentar o produto com clareza, mantendo a linguagem visual alinhada a uma solução B2B e preservando a experiência entre diferentes tamanhos de tela.
+
+### Desktop
+
+![FUP365 em desktop](./docs/images/fup365-desktop.png)
+
+### Mobile
+
+![FUP365 em mobile](./docs/images/fup365-mobile.png)
 
 ## Tecnologias
 
@@ -121,6 +135,8 @@ Também foram realizados testes de:
 
 ## Status
 
-Projeto publicado em produção:
+Projeto publicado e em uso:
 
 https://www.fup365.com.br/site/
+
+O repositório mantém o código-fonte e a documentação da versão desenvolvida para a landing page do FUP365.
